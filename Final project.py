@@ -1,5 +1,6 @@
-print('No hey')
-print('I want to say hey')
-print('hey again')
-for i in range(5):
-    print("I said hey first")
+from tkinter import *
+from tkinter.colorchooser import askcolor
+from tkinter import ttk
+
+root = Tk()
+root.title('Travel guide')
