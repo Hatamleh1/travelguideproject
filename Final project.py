@@ -27,5 +27,7 @@ def change_dropdown(*args):
 
 country_choice.trace('w', change_dropdown)
 
+change_dropdown() == ''
+
 
 root.mainloop()
