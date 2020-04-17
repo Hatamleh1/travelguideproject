@@ -1,5 +1,30 @@
 from tkinter import *
 import tkinter as ttk
+from firebase import firebase, pyerbase
+from getpass import getpass
+
+firebaseConfig = {
+    "apiKey": "AIzaSyCgsTaRzssS9JsgC88uTDGoFS2TchT_kr4",
+    "authDomain": "travelguideproject-3d198.firebaseapp.com",
+    "databaseURL": "https://travelguideproject-3d198.firebaseio.com",
+    "projectId": "travelguideproject-3d198",
+    "storageBucket": "travelguideproject-3d198.appspot.com",
+    "messagingSenderId": "1038280136856",
+    "appId": "1:1038280136856:web:d0be96210c16ed0f6998ed",
+    "measurementId": "G-SGY74C7BSY"
+}
+
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+
+auth = firebase.auth()
+
+email = input("Email:\n")
+password = getpass("Password:\n")
+
+user = auth.create_user_with_email_and_password(email, password)
+
+
 
 
 root = Tk()
