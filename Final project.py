@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import *
 
 
+# This code runs the pages, places root and shows different frames.
+
 class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
 <<<<<<< HEAD
@@ -33,19 +35,21 @@ class TravelguideApp(tk.Tk):
         container.pack(side='top')
 
         self.frames = {}
-        for F in (Page1, Page2, Page3, Page4, Page5, Page6, LoginPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav):
+        for F in (main_page, holland, spain, germany, UK, france, LoginPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
-        self.show_frame(Page1)
+        self.show_frame(main_page)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
 
 
-class Page1(tk.Frame):
+# This is the first page, choosing a country.
+
+class main_page(tk.Frame):
    def __init__(self, parent, controller):
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -87,15 +91,15 @@ class Page1(tk.Frame):
        def option_changed(*args):
            c = variable.get()
            if c == 'Holland':
-               controller.show_frame(Page2)
+               controller.show_frame(holland)
            elif c == 'Spain':
-               controller.show_frame(Page3)
+               controller.show_frame(spain)
            elif c == 'Germany':
-               controller.show_frame(Page4)
+               controller.show_frame(germany)
            elif c == 'UK':
-               controller.show_frame(Page5)
+               controller.show_frame(UK)
            elif c == 'France':
-               controller.show_frame(Page6)
+               controller.show_frame(france)
 
        variable = StringVar(self)
        variable.set("Select country") # default value
@@ -121,7 +125,10 @@ class Page1(tk.Frame):
         B1.place(x=50, y=90, anchor=CENTER)
 >>>>>>> Stashed changes
 
-class Page2(tk.Frame):
+# Holland code.
+# Buttons for Holland.
+
+class holland(tk.Frame):
     def __init__(self, parent, controller):
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -136,7 +143,6 @@ class Page2(tk.Frame):
         tk.Frame.__init__(self, parent, bg='light grey')
         label = tk.Label(self, text="\n Here we provide general \n information regarding the \n country you are travelling to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
-
 
         B1 = Button(self, text='About the country', command=lambda: controller.show_frame(about_holland), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
@@ -157,122 +163,84 @@ class Page2(tk.Frame):
         B6 = Button(self, text='Cities', command=lambda: controller.show_frame(city), width = 20, highlightbackground='light grey')
         B6.place(relx=0.5, rely=0.8, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page1), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.23, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.76, rely=0.9, anchor=CENTER)
 
 
-class Page3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 3", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page1), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-class Page4(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 4", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page1), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-class Page5(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = Label(self, text="Page 5", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page1), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-class Page6(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = Label(self, text="Page 6", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page1), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
+# Page about Holland
 class about_holland(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="About Holland", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+# Best time to visit.
 class best_visit(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Best time to visit", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+# Transportation information about Holland.
 class transport(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Public transportation", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+# Currency information about Holland.
 class currency(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Currency", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
+# Electricity information about Holland.
 class electricity(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Electricity", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+# This is the page where you can pick any city in Holland.
 class city(tk.Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
@@ -284,13 +252,13 @@ class city(tk.Frame):
             if c == 'Amsterdam':
                 controller.show_frame(amsterdam_nav)
             elif c == 'Haag':
-                controller.show_frame(Page3)
+                controller.show_frame(spain)
             elif c == 'Rotterdam':
-                controller.show_frame(Page4)
+                controller.show_frame(germany)
             elif c == 'Utrecht':
-                controller.show_frame(Page5)
+                controller.show_frame(UK)
             elif c == 'Best':
-                controller.show_frame(Page6)
+                controller.show_frame(france)
 
         variable = StringVar(self)
         variable.set("Select city") # default value
@@ -299,13 +267,14 @@ class city(tk.Frame):
         w.config(bg="light grey")
         w.place(relx=0.5, rely=0.55, anchor=CENTER)
 
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Page2), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+# Navigational page of Amsterdam.
 class amsterdam_nav(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey')
@@ -313,20 +282,33 @@ class amsterdam_nav(tk.Frame):
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
 
-        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(about_holland), width=20, highlightbackground='light grey')
+        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(gudie_info), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
 
-        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(best_visit), width=20, highlightbackground='light grey')
+        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(hotels), width=20, highlightbackground='light grey')
         B2.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(transport), width=20, highlightbackground='light grey')
+        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(restaurants), width=20, highlightbackground='light grey')
         B3.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(currency), width=20, highlightbackground='light grey')
+        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(sightseeing), width=20, highlightbackground='light grey')
         B4.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-        B5 = Button(self, text='Activites', command=lambda: controller.show_frame(electricity), width=20, highlightbackground='light grey')
+        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(activities), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(city), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class gudie_info(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Guide information", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -334,6 +316,125 @@ class amsterdam_nav(tk.Frame):
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
+
+class hotels(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Hotels", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+        rating1 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
+        rating1.place(relx=0.75, rely=0.3, anchor=CENTER)
+        rating2 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
+        rating2.place(relx=0.75, rely=0.45, anchor=CENTER)
+        rating3 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
+        rating3.place(relx=0.75, rely=0.6, anchor=CENTER)
+        rating4 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
+        rating4.place(relx=0.75, rely=0.75, anchor=CENTER)
+
+
+class restaurants(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Restaurants", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class sightseeing(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Sightseeing", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class activities(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Activities", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+
+
+
+####################################################
+
+
+
+
+class spain(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page 3", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class germany(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page 4", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class UK(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = Label(self, text="Page 5", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
+
+
+class france(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = Label(self, text="Page 6", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
+        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
 class LoginPage(tk.Frame):
@@ -353,10 +454,10 @@ class LoginPage(tk.Frame):
         loginBtn = Button(self, text="Login", command=None)
         loginBtn.place(relx=0.6, rely=0.8, anchor=CENTER)
 
-        signupBtn = Button(self, text='Sign Up', command=controller.show_frame(Page1))
+        signupBtn = Button(self, text='Sign Up', command=controller.show_frame(main_page))
         signupBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
 
 
-#running code
+#call and run code
 app = TravelguideApp()
 app.mainloop()
