@@ -3,7 +3,7 @@ from tkinter import *
 
 class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+        Tk.__init__(self, *args, **kwargs)
         self.geometry('400x250')
         container = tk.Frame(self)
 
@@ -13,10 +13,10 @@ class TravelguideApp(tk.Tk):
         container.pack(side='top')
 
         self.frames = {}
-        for F in (Page1, Page2, Page3, LoginPage):
+        for F in (Page1, Page2, Page3, Page4, Page5, Page6, LoginPage):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky='N S E W')
+            frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
         self.show_frame(Page1)
 
@@ -27,18 +27,33 @@ class TravelguideApp(tk.Tk):
 
 class Page1(tk.Frame):
    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Main Page", bg='white')
-        label.pack()
+       tk.Frame.__init__(self, parent)
+       label = tk.Label(self, text="Main Page", bg='grey', height=300, width=300, padx=300, pady=300)
+       label.columnconfigure(0, weight=1)
+       label.rowconfigure(0, weight=1)
+       label.pack()
 
-        country_choice = StringVar()
-        choices = {'Holland', 'Spain', 'Germany', 'UK', 'France'}
-        country_choice.set('Select country')
-        popupMenu = OptionMenu(label, country_choice, *choices)
-        Label(label, text="Choose a country").grid(row=1, column=1)
-        popupMenu.grid(row=2, column=1)
-        B1 = Button(label, text="Continue", command=lambda: controller.show_frame(Page2))
-        B1.grid(row=3, column=1)
+       def option_changed(*args):
+           c = variable.get()
+           if c == 'Holland':
+               controller.show_frame(Page2)
+           elif c == 'Spain':
+               controller.show_frame(Page3)
+           elif c == 'Germany':
+               controller.show_frame(Page4)
+           elif c == 'UK':
+               controller.show_frame(Page5)
+           elif c == 'France':
+               controller.show_frame(Page6)
+
+       variable = StringVar(self)
+       variable.set("Select country") # default value
+       variable.trace("w", option_changed)
+       w = OptionMenu(self, variable, 'Holland', 'Spain', 'Germany', 'UK', 'France')
+       w.pack()
+
+       B1 = Button(label, text="Logout", command=lambda: controller.show_frame(LoginPage))
+       B1.grid(row=1, column=1, sticky=(N, S, E, W))
 
 
 class Page2(tk.Frame):
@@ -54,7 +69,34 @@ class Page2(tk.Frame):
 class Page3(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 2", bg='white')
+        label = tk.Label(self, text="Page 3", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        Btn = tk.Button(self, text='Visit Page 1', command=lambda: controller.show_frame(Page1))
+        Btn.pack()
+
+class Page4(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page 4", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        Btn = tk.Button(self, text='Visit Page 1', command=lambda: controller.show_frame(Page1))
+        Btn.pack()
+
+class Page5(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page 5", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+
+        Btn = tk.Button(self, text='Visit Page 1', command=lambda: controller.show_frame(Page1))
+        Btn.pack()
+
+class Page6(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page 6", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
         Btn = tk.Button(self, text='Visit Page 1', command=lambda: controller.show_frame(Page1))
