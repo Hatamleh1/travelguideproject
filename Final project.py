@@ -4,9 +4,8 @@ from tkinter import *
 class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        self.geometry('500x350')
+        self.geometry('400x250')
         container = tk.Frame(self)
-
 
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
@@ -30,21 +29,21 @@ class Page1(tk.Frame):
    def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Main Page", bg='white')
-        label.place(relx=0.2, rely=0.3, anchor=CENTER)
+        label.pack()
 
         country_choice = StringVar()
         choices = {'Holland', 'Spain', 'Germany', 'UK', 'France'}
         country_choice.set('Select country')
         popupMenu = OptionMenu(label, country_choice, *choices)
-        Label(label, text="Choose a country").place(relx=0.5, rely=0.4, anchor=CENTER)
-        popupMenu.place(relx=0.5, rely=0.5, anchor=CENTER)
+        Label(label, text="Choose a country").grid(row=1, column=1)
+        popupMenu.grid(row=2, column=1)
         B1 = Button(label, text="Continue", command=lambda: controller.show_frame(Page2))
-        B1.place(relx=1, rely=1, anchor=CENTER)
+        B1.grid(row=3, column=1)
 
 
 class Page2(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        root2 = tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Page 2", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
@@ -86,3 +85,4 @@ class LoginPage(tk.Frame):
 #running code
 app = TravelguideApp()
 app.mainloop()
+
