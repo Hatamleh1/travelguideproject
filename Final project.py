@@ -4,9 +4,14 @@ from tkinter import *
 class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+<<<<<<< Updated upstream
         self.geometry('500x350')
         container = tk.Frame(self)
 
+=======
+
+        container = tk.Frame(self)
+>>>>>>> Stashed changes
 
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
@@ -28,24 +33,38 @@ class TravelguideApp(tk.Tk):
 
 class Page1(tk.Frame):
    def __init__(self, parent, controller):
+<<<<<<< Updated upstream
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Main Page", bg='white')
         label.place(relx=0.2, rely=0.3, anchor=CENTER)
+=======
+        root = tk.Frame.__init__(self, parent)
+        label = tk.Label(root, text="Main Page", bg='white')
+        label.pack(side="top", fill="both", expand=True)
+>>>>>>> Stashed changes
 
-        country_choice = StringVar()
+        country_choice = StringVar(root)
         choices = {'Holland', 'Spain', 'Germany', 'UK', 'France'}
         country_choice.set('Select country')
+<<<<<<< Updated upstream
         popupMenu = OptionMenu(label, country_choice, *choices)
         Label(label, text="Choose a country").place(relx=0.5, rely=0.4, anchor=CENTER)
         popupMenu.place(relx=0.5, rely=0.5, anchor=CENTER)
         B1 = Button(label, text="Continue", command=lambda: controller.show_frame(Page2))
         B1.place(relx=1, rely=1, anchor=CENTER)
 
+=======
+        popupMenu = OptionMenu(root, country_choice, *choices)
+        Label(root, text="Choose a country").place(x=50, rely=10, anchor=CENTER)
+        popupMenu.place(x=50, y=50, anchor=CENTER)
+        B1 = Button(root, text="Continue", command=lambda: controller.show_frame(Page2))
+        B1.place(x=50, y=90, anchor=CENTER)
+>>>>>>> Stashed changes
 
 class Page2(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 2", bg='white')
+        root = tk.Frame.__init__(self, parent)
+        label = tk.Label(root, text="Page 2", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
         Btn = tk.Button(self, text='Visit Page 1', command=lambda: controller.show_frame(Page1))
