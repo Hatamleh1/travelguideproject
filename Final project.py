@@ -5,10 +5,6 @@ import pickle
 accounts = {}
 
 # This code runs the pages, places root and shows different frames.
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
@@ -20,30 +16,18 @@ class TravelguideApp(tk.Tk):
         container.pack(side='top')
 
         self.frames = {}
-<<<<<<< Updated upstream
-        for F in (main_page, holland, spain, germany, UK, france, LoginPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
-=======
         for F in (main_page, holland, spain, germany, UK, france, LoginPage, SignupPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
->>>>>>> Stashed changes
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
-<<<<<<< Updated upstream
-        self.show_frame(main_page)
-=======
         self.show_frame(LoginPage)
->>>>>>> Stashed changes
 
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
 
 
-<<<<<<< Updated upstream
-# This is the first page, choosing a country.
-
-=======
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -119,7 +103,6 @@ class SignupPage(tk.Frame):
 
 
 # This is the first page, choosing a country.
->>>>>>> Stashed changes
 class main_page(tk.Frame):
    def __init__(self, parent, controller):
        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -324,7 +307,6 @@ class gudie_info(tk.Frame):
         label = Label(self, text="Guide information", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-<<<<<<< Updated upstream
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
@@ -385,8 +367,6 @@ class activities(tk.Frame):
         label = Label(self, text="Activities", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-=======
->>>>>>> Stashed changes
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
@@ -394,13 +374,7 @@ class activities(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class hotels(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Hotels", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-<<<<<<< Updated upstream
 
 
 ####################################################
@@ -415,124 +389,12 @@ class spain(tk.Frame):
         label.pack(side="top", fill="both", expand=True)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
-=======
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-        rating1 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
-        rating1.place(relx=0.75, rely=0.3, anchor=CENTER)
-        rating2 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
-        rating2.place(relx=0.75, rely=0.45, anchor=CENTER)
-        rating3 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
-        rating3.place(relx=0.75, rely=0.6, anchor=CENTER)
-        rating4 = Scale(self, from_=0, to=5, orient=HORIZONTAL)
-        rating4.place(relx=0.75, rely=0.75, anchor=CENTER)
-
-
-class restaurants(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Restaurants", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
->>>>>>> Stashed changes
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-<<<<<<< Updated upstream
-class germany(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 4", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
-=======
-class sightseeing(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Sightseeing", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
->>>>>>> Stashed changes
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-
-<<<<<<< Updated upstream
-class UK(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = Label(self, text="Page 5", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
-=======
-class activities(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Activities", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
->>>>>>> Stashed changes
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-
-<<<<<<< Updated upstream
-class france(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = Label(self, text="Page 6", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-
-class LoginPage(tk.Frame):
-=======
-
-
-
-####################################################
-
-
-
-
-class spain(tk.Frame):
->>>>>>> Stashed changes
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 3", bg='white')
-        label.pack(side="top", fill="both", expand=True)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
-        logout.place(relx=0.8, rely=0.9, anchor=CENTER)
-
-
-<<<<<<< Updated upstream
-        signupBtn = Button(self, text='Sign Up', command=controller.show_frame(main_page))
-        signupBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
-=======
 class germany(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -564,18 +426,14 @@ class france(tk.Frame):
         tk.Frame.__init__(self, parent)
         label = Label(self, text="Page 6", bg='white')
         label.pack(side="top", fill="both", expand=True)
->>>>>>> Stashed changes
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
-<<<<<<< Updated upstream
-=======
         logout = Button(self, text="Logout", bg='light grey', highlightbackground='light grey', command=lambda: controller.show_frame(LoginPage), width=5)
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
->>>>>>> Stashed changes
 #call and run code
 app = TravelguideApp()
 app.mainloop()
