@@ -114,7 +114,7 @@ class hotels(tk.Frame):
                 average = sum(i)/len(i)
                 average = round(average, 1)
                 tk.Label(self, text=average).place(relx=0.82, rely=0.55, anchor=W)
-            y = hotels_r['Ibis_hotel']
+            y = hotels_r['Yellow_hotel']
             if o4.get() == '5' or o4.get() == '4' or o4.get() == '3' or o4.get() == '2' or o4.get() == '1':
                 y.append(int(o2.get()))
                 average = sum(y)/len(y)
