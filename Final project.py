@@ -132,8 +132,8 @@ class main_page(tk.Frame):
 
        canvas = Canvas(self, width=100, height=100, bg='white')
        canvas.place(relx=0.5, rely=0.4, anchor=CENTER)
-       gif1 = tk.PhotoImage(file='image.pgm')
-       canvas.create_image(5, 1, image=gif1)
+       gif1 = tk.PhotoImage(file='logo.gif')
+       canvas.create_image(100, 100, image=gif1)
 
 
        def option_changed(*args):
