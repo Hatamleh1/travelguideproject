@@ -536,6 +536,10 @@ class france(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
+<<<<<<< Updated upstream
 #call and run code
+=======
+# call and run code
+>>>>>>> Stashed changes
 app = TravelguideApp()
 app.mainloop()
