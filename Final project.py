@@ -29,12 +29,9 @@ class TravelguideApp(tk.Tk):
         frame.tkraise()
 
 
-<<<<<<< HEAD
-=======
 # This is our login function.
 # The page of login
 
->>>>>>> master
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -56,24 +53,20 @@ class LoginPage(tk.Frame):
         signupBtn = Button(self, text='Sign Up', highlightbackground='light grey', command=lambda: controller.show_frame(SignupPage))
         signupBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
 
-<<<<<<< HEAD
 
-=======
         # Checks if login is correct.
->>>>>>> master
-
         def CheckLogin():
             upload = open('accounts.pickle', 'rb')
             accounts = pickle.load(upload)
 
             if userEnt.get() in accounts and accounts[userEnt.get()] == passEnt.get():
                 controller.show_frame(main_page)
-                r = Tk() # Opens new window
-                r.title(':D')
-                r.geometry('150x50') # Makes the window a certain size
-                rlbl = Label(r, text='\n[+] Logged In') # "logged in" label
-                rlbl.pack() # Pack is like .grid(), just different
-                r.mainloop()
+                # r = Tk() # Opens new window
+                # r.title(':D')
+                # r.geometry('150x50') # Makes the window a certain size
+                # rlbl = Label(r, text='\n[+] Logged In') # "logged in" label
+                # rlbl.pack() # Pack is like .grid(), just different
+                # r.mainloop()
             else:
                 r = Tk()
                 r.title('D:')
@@ -82,11 +75,8 @@ class LoginPage(tk.Frame):
                 rlbl.pack()
                 r.mainloop()
 
-<<<<<<< HEAD
-=======
 # Creates signup page.
 
->>>>>>> master
 class SignupPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -103,8 +93,6 @@ class SignupPage(tk.Frame):
         new_passEnt = Entry(self, text='', show='*', highlightbackground='light grey')
         new_passEnt.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-<<<<<<< HEAD
-=======
 
         submitBtn = Button(self, text='Submit', command=lambda: FSSignup(), highlightbackground='light grey')
         submitBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
@@ -121,7 +109,6 @@ class SignupPage(tk.Frame):
 
 
 # This is the first page, choosing a country.
->>>>>>> master
 
         submitBtn = Button(self, text='Submit', command=lambda: FSSignup(), highlightbackground='light grey')
         submitBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
@@ -493,7 +480,6 @@ class activities(tk.Frame):
 
 
 
-####################################################
 
 
 
@@ -550,37 +536,6 @@ class france(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-<<<<<<< HEAD
 #call and run code
 app = TravelguideApp()
 app.mainloop()
-
-
-
-=======
-class LoginPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-
-        userLbl = Label(self, text="Username:")
-        userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
-        userEnt = Entry(self, text='')
-        userEnt.place(relx=0.5, rely=0.5, anchor=CENTER)
-
-        passLbl = Label(self, text="Password:")
-        passLbl.place(relx=0.5, rely=0.6, anchor=CENTER)
-        passEnt = Entry(self, text='', show='*')
-        passEnt.place(relx=0.5, rely=0.7, anchor=CENTER)
-
-        loginBtn = Button(self, text="Login", command=None)
-        loginBtn.place(relx=0.6, rely=0.8, anchor=CENTER)
-
-        signupBtn = Button(self, text='Sign Up', command=controller.show_frame(main_page))
-        signupBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
-
-
-# call and run code
-app = TravelguideApp()
-app.mainloop()
-
->>>>>>> master
