@@ -22,7 +22,7 @@ class TravelguideApp(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
-        self.show_frame(LoginPage)
+        self.show_frame(main_page)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -35,7 +35,6 @@ class TravelguideApp(tk.Tk):
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-
 
         userLbl = Label(self, text="Username:", bg='light grey')
         userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
@@ -130,6 +129,12 @@ class main_page(tk.Frame):
        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
        label = Label(self, text="Welcome to Trippy \n\n We will give you all the advice you \n need before and during your trip. \n\n Select you country below.", bg="light grey")
        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+       canvas = Canvas(self, width=100, height=100, bg='white')
+       canvas.place(relx=0.5, rely=0.4, anchor=CENTER)
+       gif1 = tk.PhotoImage(file='image.pgm')
+       canvas.create_image(5, 1, image=gif1)
+
 
        def option_changed(*args):
            c = variable.get()
@@ -410,8 +415,8 @@ class hotels(tk.Frame):
                 tk.Label(self, highlightbackground='light grey', text='1').place(relx=0.82, rely=0.65, anchor=W)
                 tot += 1
 
-            #tk.Label(self, text=str(tot), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
-            #tk.Label(self, text=str(tot/15), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
+            tk.Label(self, text=str(tot), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
+            tk.Label(self, text=str(tot/15), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
 
         tk.Label(self, text="Hotels", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.03, rely=0.25, anchor=W)
         tk.Label(self, text="Wellington", bg='light grey').place(relx=0.03, rely=0.35, anchor=W)
@@ -536,10 +541,7 @@ class france(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-<<<<<<< Updated upstream
-#call and run code
-=======
 # call and run code
->>>>>>> Stashed changes
+
 app = TravelguideApp()
 app.mainloop()
