@@ -75,12 +75,7 @@ class LoginPage(tk.Frame):
 
             if userEnt.get() in accounts and accounts[userEnt.get()] == passEnt.get():
                 controller.show_frame(main_page)
-                # r = Tk() # Opens new window
-                # r.title(':D')
-                # r.geometry('150x50') # Makes the window a certain size
-                # rlbl = Label(r, text='\n[+] Logged In') # "logged in" label
-                # rlbl.pack() # Pack is like .grid(), just different
-                # r.mainloop()
+
             else:
                 r = Tk()
                 r.title('D:')
@@ -385,22 +380,22 @@ class hotels(tk.Frame):
 
         l1 = tk.Label(self, text='')
         if len(hotels_r['Wellington']) > 0:
-            l1['text'] = round(sum(hotels_r['Wellington'])/len(hotels_r['Wellington']))
+            l1['text'] = round(sum(hotels_r['Wellington'])/len(hotels_r['Wellington']), 1)
         l1.place(relx=0.82, rely=0.35, anchor=W)
 
         l2 = tk.Label(self, text='')
         if len(hotels_r['W_hotel']) > 0:
-            l2['text'] = round(sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel']))
+            l2['text'] = round(sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel']), 1)
         l2.place(relx=0.82, rely=0.45, anchor=W)
 
         l3 = tk.Label(self, text='')
         if len(hotels_r['Ibis_hotel']) > 0:
-            l3['text'] = round(sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel']))
+            l3['text'] = round(sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel']), 1)
         l3.place(relx=0.82, rely=0.55, anchor=W)
 
         l4 = tk.Label(self, text='')
         if len(hotels_r['Yellow_hotel']) > 0:
-            l4['text'] = round(sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel']))
+            l4['text'] = round(sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel']), 1)
         l4.place(relx=0.82, rely=0.65, anchor=W)
 
         def save():
