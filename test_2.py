@@ -60,6 +60,19 @@ class holland(tk.Frame):
 
 class hotels(tk.Frame):
     def __init__(self, parent, controller):
+        def load():
+            global hotels_r
+            try:
+                global hotels_r
+                rate_upload = open('hotels_rating.pickle', 'rb')
+                hotels_r = pickle.load(rate_upload)
+            except:
+                hotels_r['Wellington'] = list()
+                hotels_r['W_hotel'] = list()
+                hotels_r['Ibis_hotel'] = list()
+                hotels_r['Yellow_hotel'] = list()
+        load()
+
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Find hotels and their ratings.", bg="light grey")
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
@@ -90,62 +103,64 @@ class hotels(tk.Frame):
         o4 = tk.Entry(self, width=9, highlightbackground='light grey')
         o4.place(relx=0.37, rely=0.65, anchor=W)
 
-        hotels_r['Wellington'] = list()
-        hotels_r['W_hotel'] = list()
-        hotels_r['Ibis_hotel'] = list()
-        hotels_r['Yellow_hotel'] = list()
 
-        def display():
-            w = hotels_r['Wellington']
-            if o1.get() == '5' or o1.get() == '4' or o1.get() == '3' or o1.get() == '2' or o1.get() == '1':
-                w.append(int(o1.get()))
-                average = sum(w)/len(w)
-                average = round(average, 1)
-                tk.Label(self, text=average).place(relx=0.82, rely=0.35, anchor=W)
-            r = hotels_r['W_hotel']
-            if o2.get() == '5' or o2.get() == '4' or o2.get() == '3' or o2.get() == '2' or o2.get() == '1':
-                r.append(int(o2.get()))
-                average = sum(r)/len(r)
-                average = round(average, 1)
-                tk.Label(self, text=average).place(relx=0.82, rely=0.45, anchor=W)
-            i = hotels_r['Ibis_hotel']
-            if o3.get() == '5' or o3.get() == '4' or o3.get() == '3' or o3.get() == '2' or o3.get() == '1':
-                i.append(int(o3.get()))
-                average = sum(i)/len(i)
-                average = round(average, 1)
-                tk.Label(self, text=average).place(relx=0.82, rely=0.55, anchor=W)
-            y = hotels_r['Yellow_hotel']
-            if o4.get() == '5' or o4.get() == '4' or o4.get() == '3' or o4.get() == '2' or o4.get() == '1':
-                y.append(int(o2.get()))
-                average = sum(y)/len(y)
-                average = round(average, 1)
-                tk.Label(self, text=average).place(relx=0.82, rely=0.65, anchor=W)
+        l1 = tk.Label(self, text='')
+        if len(hotels_r['Wellington']) > 0:
+            l1['text'] = sum(hotels_r['Wellington'])/len(hotels_r['Wellington'])
+        l1.place(relx=0.82, rely=0.35, anchor=W)
 
-            rate_download = open('hotel_rating.pickle', 'wb')
+        l2 = tk.Label(self, text='')
+        if len(hotels_r['W_hotel']) > 0:
+            l2['text'] = sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel'])
+        l2.place(relx=0.82, rely=0.35, anchor=W)
+
+        l3 = tk.Label(self, text='')
+        if len(hotels_r['Ibis_hotel']) > 0:
+            l3['text'] = sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel'])
+        l3.place(relx=0.82, rely=0.35, anchor=W)
+
+        l4 = tk.Label(self, text='')
+        if len(hotels_r['Yellow_hotel']) > 0:
+            l4['text'] = sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel'])
+        l4.place(relx=0.82, rely=0.35, anchor=W)
+
+        def save():
+            rate_download = open('hotels_rating.pickle', 'wb')
             pickle.dump(hotels_r, rate_download)
             rate_download.close()
 
-        # def show_rate():
-        #     rate_upload = open('accounts.pickle', 'rb')
-        #     hotels_r = pickle.load(rate_upload)
-        #     if hotels_r['Wellington'] != None:
-        #         average1 = sum(hotels_r['Wellington'])/len(hotels_r['Wellington'])
-        #         tk.Label(self, text=average1).place(relx=0.82, rely=0.35, anchor=W)
-        #
-        #     if hotels_r['W_hotel'] != None:
-        #         average2 = sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel'])
-        #         tk.Label(self, text=average2).place(relx=0.82, rely=0.45, anchor=W)
-        #
-        #     if hotels_r['Ibis_hotel'] != None:
-        #         average3 = sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel'])
-        #         tk.Label(self, text=average3).place(relx=0.82, rely=0.55, anchor=W)
-        #
-        #     if hotels_r['Yellow_hotel'] != None:
-        #         average4 = sum(hotels_r['Yellow_hotel'])/len(hotels_r['Ibis_hotel'])
-        #         tk.Label(self, text=average4).place(relx=0.82, rely=0.65, anchor=W)
+        def submit():
+            global hotels_r
+            w = hotels_r['Wellington']
+            if o1.get() == '5' or o1.get() == '4' or o1.get() == '3' or o1.get() == '2' or o1.get() == '1':
+                w.append(int(o1.get()))
+                average = round(sum(w)/len(w), 1)
+                tk.Label(self, text=average).place(relx=0.82, rely=0.35, anchor=W)
+                l1['text'] = average
+            r = hotels_r['W_hotel']
+            if o2.get() == '5' or o2.get() == '4' or o2.get() == '3' or o2.get() == '2' or o2.get() == '1':
+                r.append(int(o2.get()))
+                average1 = round(sum(r)/len(r), 1)
+                tk.Label(self, text=average1).place(relx=0.82, rely=0.45, anchor=W)
+                l2['text'] = average1
+            i = hotels_r['Ibis_hotel']
+            if o3.get() == '5' or o3.get() == '4' or o3.get() == '3' or o3.get() == '2' or o3.get() == '1':
+                i.append(int(o3.get()))
+                average2 = round(sum(i)/len(i), 1)
+                tk.Label(self, text=average2).place(relx=0.82, rely=0.55, anchor=W)
+                l3['text'] = average2
+            y = hotels_r['Yellow_hotel']
+            if o4.get() == '5' or o4.get() == '4' or o4.get() == '3' or o4.get() == '2' or o4.get() == '1':
+                y.append(int(o4.get()))
+                average3 = round(sum(y)/len(y), 1)
+                tk.Label(self, text=average3).place(relx=0.82, rely=0.65, anchor=W)
+                l4['text'] = average3
+            save()
 
 
-        button1 = tk.Button(self, text="submit", command=lambda: display() and show_rate(), highlightbackground='light grey')
+
+
+        button1 = tk.Button(self, text="submit", command=submit, highlightbackground='light grey')
         button1.place(relx=0.41, rely=0.70)
 
         # back_btn = Button(root, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
