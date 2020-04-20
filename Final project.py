@@ -47,6 +47,8 @@ class TravelguideApp(tk.Tk):
 # This is our login function.
 # The page of login
 
+
+
 class LoginPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
