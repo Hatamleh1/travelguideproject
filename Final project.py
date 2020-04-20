@@ -6,24 +6,24 @@ hotels_r = {}
 accounts = {}
 
 # This code runs the pages, places root and shows different frames.
-class TravelguideApp(tk.Tk):
+class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         self.title('TravelguideApp')
         self.geometry('500x350')
 
-        container = tk.Frame(self)
+        container = Frame(self)
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
         container.pack(side='top')
 
-        menubbar = tk.Menu(container)
-        account_menu = tk.Menu(menubbar, tearoff=0)
+        menubbar = Menu(container)
+        account_menu = Menu(menubbar, tearoff=0)
         account_menu.add_command(label="Log Out", command=lambda: logout())
         account_menu.add_separator()
         account_menu.add_command(label="Quit", command=lambda: exit())
         menubbar.add_cascade(label="Account", menu=account_menu)
-        tk.Tk.config(self, menu=menubbar)
+        Tk.config(self, menu=menubbar)
 
         def logout():
             self.show_frame(LoginPage)
@@ -49,9 +49,9 @@ class TravelguideApp(tk.Tk):
 
 
 
-class LoginPage(tk.Frame):
+class LoginPage(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
 
         userLbl = Label(self, text="Username:", bg='light grey')
         userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
@@ -88,9 +88,9 @@ class LoginPage(tk.Frame):
 
 # Creates signup page.
 
-class SignupPage(tk.Frame):
+class SignupPage(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         global new_passEnt
         global new_userEnt
 
@@ -122,9 +122,9 @@ class SignupPage(tk.Frame):
 
 
 # This is the first page, choosing a country.
-class main_page(tk.Frame):
+class main_page(Frame):
    def __init__(self, parent, controller):
-       tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+       Frame.__init__(self, parent, bg='light grey', width=500, height=500)
        label = Label(self, text="Welcome to Trippy \n\n We will give you all the advice you \n need before and during your trip. \n\n Select you country below.", bg="light grey")
        label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
@@ -156,10 +156,10 @@ class main_page(tk.Frame):
 # Holland code.
 # Buttons for Holland.
 
-class holland(tk.Frame):
+class holland(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey')
-        label = tk.Label(self, text="\n Here we provide general \n information regarding the \n country you are travelling to.", bg='light grey')
+        Frame.__init__(self, parent, bg='light grey')
+        label = Label(self, text="\n Here we provide general \n information regarding the \n country you are travelling to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         B1 = Button(self, text='About the country', command=lambda: controller.show_frame(about_holland), width=20, highlightbackground='light grey')
@@ -188,7 +188,7 @@ class holland(tk.Frame):
 
 
 # Page about Holland
-class about_holland(tk.Frame):
+class about_holland(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can get all information \n about Holland needed before \n your trip to Holland.", bg='light grey')
@@ -202,7 +202,7 @@ class about_holland(tk.Frame):
 
 
 # Best time to visit.
-class best_visit(tk.Frame):
+class best_visit(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can read about the best \n time of the year to visit Holland", bg='light grey')
@@ -216,7 +216,7 @@ class best_visit(tk.Frame):
 
 
 # Transportation information about Holland.
-class transport(tk.Frame):
+class transport(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can get information about \n Hollands pubic transportation", bg='light grey')
@@ -230,7 +230,7 @@ class transport(tk.Frame):
 
 
 # Currency information about Holland.
-class currency(tk.Frame):
+class currency(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="What currency does Holland have? \n Here you can find out. ", bg='light grey')
@@ -244,7 +244,7 @@ class currency(tk.Frame):
 
 
 # Electricity information about Holland.
-class electricity(tk.Frame):
+class electricity(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Holland has this typ of electricity.", bg='light grey')
@@ -258,7 +258,7 @@ class electricity(tk.Frame):
 
 
 # This is the page where you can pick any city in Holland.
-class city(tk.Frame):
+class city(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Select the city you are visiting \n and we will show you our advice.", bg='light grey')
@@ -292,10 +292,10 @@ class city(tk.Frame):
 
 
 # Navigational page of Amsterdam.
-class amsterdam_nav(tk.Frame):
+class amsterdam_nav(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey')
-        label = tk.Label(self, text="\n What are you looking for? \n Here we provide all kinds of \n actitives, resturants to go to.", bg='light grey')
+        Frame.__init__(self, parent, bg='light grey')
+        label = Label(self, text="\n What are you looking for? \n Here we provide all kinds of \n actitives, resturants to go to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
 
@@ -321,9 +321,9 @@ class amsterdam_nav(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class gudie_info(tk.Frame):
+class gudie_info(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Amsterdam.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
@@ -334,7 +334,7 @@ class gudie_info(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class hotels(tk.Frame):
+class hotels(Frame):
     def __init__(self, parent, controller):
         def load():
             global hotels_r
@@ -349,53 +349,53 @@ class hotels(tk.Frame):
                 hotels_r['Yellow_hotel'] = list()
         load()
 
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Find hotels and their ratings.", bg="light grey")
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         label = Label(self, text="Find hotels and their ratings.", bg="light grey")
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
-        tk.Label(self, text="Rating", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.76, rely=0.25, anchor=W)
-        tk.Label(self, text="Your opinion", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.37, rely=0.25, anchor=W)
+        Label(self, text="Rating", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.76, rely=0.25, anchor=W)
+        Label(self, text="Your opinion", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.37, rely=0.25, anchor=W)
 
 
 
-        tk.Label(self, text="Hotels", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.03, rely=0.25, anchor=W)
-        tk.Label(self, text="Wellington", bg='light grey').place(relx=0.03, rely=0.35, anchor=W)
-        tk.Label(self, text="W Hotel", bg='light grey').place(relx=0.03, rely=0.45, anchor=W)
-        tk.Label(self, text="Ibis Hotel", bg='light grey').place(relx=0.03, rely=0.55, anchor=W)
-        tk.Label(self, text="Yellow Hotel", bg='light grey').place(relx=0.03, rely=0.65, anchor=W)
+        Label(self, text="Hotels", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.03, rely=0.25, anchor=W)
+        Label(self, text="Wellington", bg='light grey').place(relx=0.03, rely=0.35, anchor=W)
+        Label(self, text="W Hotel", bg='light grey').place(relx=0.03, rely=0.45, anchor=W)
+        Label(self, text="Ibis Hotel", bg='light grey').place(relx=0.03, rely=0.55, anchor=W)
+        Label(self, text="Yellow Hotel", bg='light grey').place(relx=0.03, rely=0.65, anchor=W)
 
-        o1 = tk.Entry(self, width=9, highlightbackground='light grey')
+        o1 = Entry(self, width=9, highlightbackground='light grey')
         o1.place(relx=0.37, rely=0.35, anchor=W)
 
-        o2 = tk.Entry(self, width=9, highlightbackground='light grey')
+        o2 = Entry(self, width=9, highlightbackground='light grey')
         o2.place(relx=0.37, rely=0.45, anchor=W)
 
-        o3 = tk.Entry(self, width=9, highlightbackground='light grey')
+        o3 = Entry(self, width=9, highlightbackground='light grey')
         o3.place(relx=0.37, rely=0.55, anchor=W)
 
-        o4 = tk.Entry(self, width=9, highlightbackground='light grey')
+        o4 = Entry(self, width=9, highlightbackground='light grey')
         o4.place(relx=0.37, rely=0.65, anchor=W)
 
 
-        l1 = tk.Label(self, text='')
+        l1 = Label(self, text='')
         if len(hotels_r['Wellington']) > 0:
             l1['text'] = round(sum(hotels_r['Wellington'])/len(hotels_r['Wellington']), 1)
         l1.place(relx=0.82, rely=0.35, anchor=W)
 
-        l2 = tk.Label(self, text='')
+        l2 = Label(self, text='')
         if len(hotels_r['W_hotel']) > 0:
             l2['text'] = round(sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel']), 1)
         l2.place(relx=0.82, rely=0.45, anchor=W)
 
-        l3 = tk.Label(self, text='')
+        l3 = Label(self, text='')
         if len(hotels_r['Ibis_hotel']) > 0:
             l3['text'] = round(sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel']), 1)
         l3.place(relx=0.82, rely=0.55, anchor=W)
 
-        l4 = tk.Label(self, text='')
+        l4 = Label(self, text='')
         if len(hotels_r['Yellow_hotel']) > 0:
             l4['text'] = round(sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel']), 1)
         l4.place(relx=0.82, rely=0.65, anchor=W)
@@ -432,7 +432,7 @@ class hotels(tk.Frame):
 
 
 
-        button1 = tk.Button(self, text="submit", command=submit, highlightbackground='light grey')
+        button1 = Button(self, text="submit", command=submit, highlightbackground='light grey')
         button1.place(relx=0.41, rely=0.70)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
@@ -443,9 +443,9 @@ class hotels(tk.Frame):
 
 
 
-class restaurants(tk.Frame):
+class restaurants(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Here you can find the best \n restaurants.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
@@ -456,9 +456,9 @@ class restaurants(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class sightseeing(tk.Frame):
+class sightseeing(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
@@ -469,9 +469,9 @@ class sightseeing(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class activities(tk.Frame):
+class activities(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Find the most interesting activities \n to do in Amsterdam. ", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
@@ -483,16 +483,10 @@ class activities(tk.Frame):
 
 
 
-
-
-
-
-
-
-class spain(tk.Frame):
+class spain(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 3", bg='white')
+        Frame.__init__(self, parent)
+        label = Label(self, text="Page 3", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
@@ -502,10 +496,10 @@ class spain(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class germany(tk.Frame):
+class germany(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page 4", bg='white')
+        Frame.__init__(self, parent)
+        label = Label(self, text="Page 4", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
@@ -515,9 +509,9 @@ class germany(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class UK(tk.Frame):
+class UK(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        Frame.__init__(self, parent)
         label = Label(self, text="Page 5", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
@@ -528,9 +522,9 @@ class UK(tk.Frame):
         logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 
-class france(tk.Frame):
+class france(Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        Frame.__init__(self, parent)
         label = Label(self, text="Page 6", bg='white')
         label.pack(side="top", fill="both", expand=True)
 
