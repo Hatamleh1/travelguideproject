@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 import pickle
 
+hotels_r = {}
 accounts = {}
 
 # This code runs the pages, places root and shows different frames.
@@ -9,12 +10,26 @@ class TravelguideApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         self.title('TravelguideApp')
-        self.geometry('250x300')
-        container = tk.Frame(self)
+        self.geometry('500x350')
 
+        container = tk.Frame(self)
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
         container.pack(side='top')
+
+        menubbar = tk.Menu(container)
+        account_menu = tk.Menu(menubbar, tearoff=0)
+        account_menu.add_command(label="Log Out", command=lambda: logout())
+        account_menu.add_separator()
+        account_menu.add_command(label="Quit", command=lambda: exit())
+        menubbar.add_cascade(label="Account", menu=account_menu)
+        tk.Tk.config(self, menu=menubbar)
+
+        def logout():
+            self.show_frame(LoginPage)
+
+        def exit():
+            quit()
 
         self.frames = {}
         for F in (main_page, holland, spain, germany, UK, france, LoginPage, SignupPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
@@ -22,7 +37,7 @@ class TravelguideApp(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
-        self.show_frame(main_page)
+        self.show_frame(LoginPage)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -105,22 +120,8 @@ class SignupPage(tk.Frame):
             download = open('accounts.pickle', 'wb')
             pickle.dump(accounts, download)
             download.close()
+            controller.show_frame(LoginPage)
 
-
-# This is the first page, choosing a country.
-
-        submitBtn = Button(self, text='Submit', command=lambda: FSSignup(), highlightbackground='light grey')
-        submitBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
-
-        cancelBtn = Button(self, text='Cancel', command=lambda: controller.show_frame(LoginPage), highlightbackground='light grey')
-        cancelBtn.place(relx=0.56, rely=0.8, anchor=CENTER)
-
-
-        def FSSignup():
-            accounts[new_userEnt.get()] = new_passEnt.get()
-            download = open('accounts.pickle', 'wb')
-            pickle.dump(accounts, download)
-            download.close()
 
 
 # This is the first page, choosing a country.
@@ -338,96 +339,103 @@ class gudie_info(tk.Frame):
 
 class hotels(tk.Frame):
     def __init__(self, parent, controller):
+        def load():
+            global hotels_r
+            try:
+                global hotels_r
+                rate_upload = open('hotels_rating.pickle', 'rb')
+                hotels_r = pickle.load(rate_upload)
+            except:
+                hotels_r['Wellington'] = list()
+                hotels_r['W_hotel'] = list()
+                hotels_r['Ibis_hotel'] = list()
+                hotels_r['Yellow_hotel'] = list()
+        load()
+
         tk.Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Find hotels and their ratings.", bg="light grey")
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
-        o1 = tk.Entry(self, width=9, highlightbackground='light grey')
-        o2 = tk.Entry(self, width=9, highlightbackground='light grey')
-        o3 = tk.Entry(self, width=9, highlightbackground='light grey')
-        o4 = tk.Entry(self, width=9, highlightbackground='light grey')
+        label = Label(self, text="Find hotels and their ratings.", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
-        def display():
-            tot = 0
-            if o1.get() == "5":
-                tk.Label().place(relx=0.82, rely=0.35, anchor=W)
-                tot += 5
-            if o1.get() == "4":
-                tk.Label(self).place(relx=0.82, rely=0.35, anchor=W)
-                tot += 4
-            if o1.get() == "3":
-                tk.Label(self).place(relx=0.82, rely=0.35, anchor=W)
-                tot += 3
-            if o1.get() == "2":
-                tk.Label(self).place(relx=0.82, rely=0.35, anchor=W)
-                tot += 2
-            if o1.get() == "1":
-                tk.Label(self).place(relx=0.82, rely=0.35, anchor=W)
-                tot += 1
-            if o2.get() == "5":
-                tk.Label(self).place(relx=0.82, rely=0.45, anchor=W)
-                tot += 5
-            if o2.get() == "4":
-                tk.Label(self).place(relx=0.82, rely=0.45, anchor=W)
-                tot += 4
-            if o2.get() == "3":
-                tk.Label(self).place(relx=0.82, rely=0.45, anchor=W)
-                tot += 3
-            if o2.get() == "2":
-                tk.Label(self).place(relx=0.82, rely=0.45, anchor=W)
-                tot += 2
-            if o2.get() == "1":
-                tk.Label(self).place(relx=0.82, rely=0.45, anchor=W)
-                tot += 1
-            if o3.get() == "5":
-                tk.Label(self).place(relx=0.82, rely=0.55, anchor=W)
-                tot += 5
-            if o3.get() == "4":
-                tk.Label(self).place(relx=0.82, rely=0.55, anchor=W)
-                tot += 4
-            if o3.get() == "3":
-                tk.Label(self).place(relx=0.82, rely=0.55, anchor=W)
-                tot += 3
-            if o3.get() == "2":
-                tk.Label(self).place(relx=0.82, rely=0.55, anchor=W)
-                tot += 2
-            if o3.get() == "1":
-                tk.Label(self).place(relx=0.82, rely=0.55, anchor=W)
-                tot += 1
-            if o4.get() == "5":
-                tk.Label(self).place(relx=0.82, rely=0.65, anchor=W)
-                tot += 5
-            if o4.get() == "4":
-                tk.Label(self).place(relx=0.82, rely=0.65, anchor=W)
-                tot += 4
-            if o4.get() == "3":
-                tk.Label(self).place(relx=0.82, rely=0.65, anchor=W)
-                tot += 3
-            if o4.get() == "2":
-                tk.Label(self).place(relx=0.82, rely=0.65, anchor=W)
-                tot += 2
-            if o4.get() == "1":
-                tk.Label(self, highlightbackground='light grey', text='1').place(relx=0.82, rely=0.65, anchor=W)
-                tot += 1
+        tk.Label(self, text="Rating", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.76, rely=0.25, anchor=W)
+        tk.Label(self, text="Your opinion", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.37, rely=0.25, anchor=W)
 
-            tk.Label(self, text=str(tot), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
-            tk.Label(self, text=str(tot/15), bg='light grey').place(relx=0.76, rely=0.35, anchor=W)
+
 
         tk.Label(self, text="Hotels", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.03, rely=0.25, anchor=W)
         tk.Label(self, text="Wellington", bg='light grey').place(relx=0.03, rely=0.35, anchor=W)
-        tk.Label(self, text="W part hotel", bg='light grey').place(relx=0.03, rely=0.45, anchor=W)
-        tk.Label(self, text="Ibbys Hotel", bg='light grey').place(relx=0.03, rely=0.55, anchor=W)
+        tk.Label(self, text="W Hotel", bg='light grey').place(relx=0.03, rely=0.45, anchor=W)
+        tk.Label(self, text="Ibis Hotel", bg='light grey').place(relx=0.03, rely=0.55, anchor=W)
         tk.Label(self, text="Yellow Hotel", bg='light grey').place(relx=0.03, rely=0.65, anchor=W)
 
-        tk.Label(self, text="Your opinion", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.37, rely=0.25, anchor=W)
+        o1 = tk.Entry(self, width=9, highlightbackground='light grey')
         o1.place(relx=0.37, rely=0.35, anchor=W)
+
+        o2 = tk.Entry(self, width=9, highlightbackground='light grey')
         o2.place(relx=0.37, rely=0.45, anchor=W)
+
+        o3 = tk.Entry(self, width=9, highlightbackground='light grey')
         o3.place(relx=0.37, rely=0.55, anchor=W)
+
+        o4 = tk.Entry(self, width=9, highlightbackground='light grey')
         o4.place(relx=0.37, rely=0.65, anchor=W)
 
-        tk.Label(self, text="Rating", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.76, rely=0.25, anchor=W)
 
-        button1 = tk.Button(self, text="submit", command=display, highlightbackground='light grey')
+        l1 = tk.Label(self, text='')
+        if len(hotels_r['Wellington']) > 0:
+            l1['text'] = round(sum(hotels_r['Wellington'])/len(hotels_r['Wellington']))
+        l1.place(relx=0.82, rely=0.35, anchor=W)
+
+        l2 = tk.Label(self, text='')
+        if len(hotels_r['W_hotel']) > 0:
+            l2['text'] = round(sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel']))
+        l2.place(relx=0.82, rely=0.45, anchor=W)
+
+        l3 = tk.Label(self, text='')
+        if len(hotels_r['Ibis_hotel']) > 0:
+            l3['text'] = round(sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel']))
+        l3.place(relx=0.82, rely=0.55, anchor=W)
+
+        l4 = tk.Label(self, text='')
+        if len(hotels_r['Yellow_hotel']) > 0:
+            l4['text'] = round(sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel']))
+        l4.place(relx=0.82, rely=0.65, anchor=W)
+
+        def save():
+            rate_download = open('hotels_rating.pickle', 'wb')
+            pickle.dump(hotels_r, rate_download)
+            rate_download.close()
+
+        def submit():
+            global hotels_r
+            w = hotels_r['Wellington']
+            if o1.get() == '5' or o1.get() == '4' or o1.get() == '3' or o1.get() == '2' or o1.get() == '1':
+                w.append(int(o1.get()))
+                average = round(sum(w)/len(w), 1)
+                l1['text'] = average
+            r = hotels_r['W_hotel']
+            if o2.get() == '5' or o2.get() == '4' or o2.get() == '3' or o2.get() == '2' or o2.get() == '1':
+                r.append(int(o2.get()))
+                average1 = round(sum(r)/len(r), 1)
+                l2['text'] = average1
+            i = hotels_r['Ibis_hotel']
+            if o3.get() == '5' or o3.get() == '4' or o3.get() == '3' or o3.get() == '2' or o3.get() == '1':
+                i.append(int(o3.get()))
+                average2 = round(sum(i)/len(i), 1)
+                l3['text'] = average2
+            y = hotels_r['Yellow_hotel']
+            if o4.get() == '5' or o4.get() == '4' or o4.get() == '3' or o4.get() == '2' or o4.get() == '1':
+                y.append(int(o4.get()))
+                average3 = round(sum(y)/len(y), 1)
+                l4['text'] = average3
+            save()
+
+
+
+
+        button1 = tk.Button(self, text="submit", command=submit, highlightbackground='light grey')
         button1.place(relx=0.41, rely=0.70)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
