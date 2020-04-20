@@ -39,11 +39,12 @@ class hotels(Frame):
         self.rating_fields = []
         self.rating_labels = []
         for i, h in enumerate(self.hotel_list):
-            Label(self, text=h.name).grid(row=i, column=0)
-            self.rating_fields.append(Entry(self))
+            Label(self, text=h.name.grid(row=i, column=0))
+            self.rating_fields.append(append(Entry(self)))
             self.rating_fields[-1].grid(row=i, column=1)
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2)
+
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.hotel_list), column=1)
 

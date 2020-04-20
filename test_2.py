@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import *
 import pickle
 
-<<<<<<< HEAD
 root = Tk()
 root.geometry('350x500')
 

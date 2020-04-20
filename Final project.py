@@ -32,7 +32,7 @@ class TravelguideApp(Tk):
             quit()
 
         self.frames = {}
-        for F in (main_page, holland, spain, germany, UK, france, LoginPage, SignupPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
+        for F in (main_page, holland, spain, germany, UK, france, LoginPage, SignupPage, about_holland, best_visit, currency, electricity, transport, neth_city, amsterdam_nav, gudie_info, hotels, restaurants, sightseeing, activities):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
@@ -177,7 +177,7 @@ class holland(Frame):
         B5 = Button(self, text='Type of electricity', command=lambda: controller.show_frame(electricity), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-        B6 = Button(self, text='Cities', command=lambda: controller.show_frame(city), width = 20, highlightbackground='light grey')
+        B6 = Button(self, text='Cities', command=lambda: controller.show_frame(neth_city), width = 20, highlightbackground='light grey')
         B6.place(relx=0.5, rely=0.8, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
@@ -258,7 +258,11 @@ class electricity(Frame):
 
 
 # This is the page where you can pick any city in Holland.
+<<<<<<< Updated upstream
 class city(Frame):
+=======
+class neth_city(tk.Frame):
+>>>>>>> Stashed changes
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Select the city you are visiting \n and we will show you our advice.", bg='light grey')
@@ -483,7 +487,11 @@ class activities(Frame):
 
 
 
+<<<<<<< Updated upstream
 class spain(Frame):
+=======
+class spain(tk.Frame):
+>>>>>>> Stashed changes
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Page 3", bg='white')

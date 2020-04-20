@@ -1,3 +1,4 @@
+from hotel import *
 class Hotel:
     def __init__(self, name):
         self.ratings = []

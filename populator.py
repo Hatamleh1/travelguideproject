@@ -6,3 +6,5 @@ l =[
     Hotel('Wellington'),
     Hotel('W Hotel')
 ]
+
+pickle.dump(l, file)
