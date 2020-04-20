@@ -130,11 +130,6 @@ class main_page(tk.Frame):
        label = Label(self, text="Welcome to Trippy \n\n We will give you all the advice you \n need before and during your trip. \n\n Select you country below.", bg="light grey")
        label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-       canvas = Canvas(self, width=100, height=100, bg='white')
-       canvas.place(relx=0.5, rely=0.4, anchor=CENTER)
-       gif1 = tk.PhotoImage(file='logo.gif')
-       canvas.create_image(100, 100, image=gif1)
-
 
        def option_changed(*args):
            c = variable.get()
