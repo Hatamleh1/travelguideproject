@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 from hotel import *
+=======
+from hotel import *
+=======
+>>>>>>> master
 >>>>>>> master
 class Hotel:
     def __init__(self, name):
@@ -19,6 +24,11 @@ class Hotel:
         except:
             pass
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+=======
+
+=======
+>>>>>>> master
 >>>>>>> master
