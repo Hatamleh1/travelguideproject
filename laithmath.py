@@ -2,7 +2,12 @@ from tkinter import *
 import pickle
 from hotel import *
 
+<<<<<<< Updated upstream
 
+=======
+hotels_r = {}
+hotels_dict = {}
+>>>>>>> Stashed changes
 
 class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):
@@ -27,6 +32,7 @@ class TravelguideApp(Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
+<<<<<<< Updated upstream
 class hotels(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
@@ -65,6 +71,9 @@ class hotels(Frame):
             pickle.dump(self.hotel_list, file)
         except:
             print('error')
+=======
+
+>>>>>>> Stashed changes
 
 
 app = TravelguideApp()

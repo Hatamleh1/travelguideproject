@@ -1,6 +1,10 @@
 from hotel import *
 
+<<<<<<< Updated upstream
 class Hotel:
+=======
+class Hotel_Amsterdam:
+>>>>>>> Stashed changes
     def __init__(self, name):
         self.ratings = []
         self.name = name
@@ -16,3 +20,7 @@ class Hotel:
                 self.ratings.append(float(value))
         except:
             pass
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
