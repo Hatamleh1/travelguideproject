@@ -1,19 +1,18 @@
 import tkinter as tk
 from tkinter import *
 import pickle
+from hotel import *
 
-
-hotels_r = {}
 accounts = {}
+hotels_dict = {}
 
-# This code runs the pages, places root and shows different frames.
 class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.title('TravelguideApp')
-        self.geometry('500x350')
-
+        self.geometry('250x300')
         container = Frame(self)
+
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
         container.pack(side='top')
@@ -38,11 +37,14 @@ class TravelguideApp(Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
+
         self.show_frame(LoginPage)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
+
+# This code runs the pages, places root and shows different frames.
 
 
 # This is our login function.
@@ -306,98 +308,43 @@ class gudie_info(Frame):
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
+
 class hotels(Frame):
     def __init__(self, parent, controller):
-        def load():
-            global hotels_r
-            try:
-                global hotels_r
-                rate_upload = open('hotels_rating.pickle', 'rb')
-                hotels_r = pickle.load(rate_upload)
-            except:
-                hotels_r['Wellington'] = list()
-                hotels_r['W_hotel'] = list()
-                hotels_r['Ibis_hotel'] = list()
-                hotels_r['Yellow_hotel'] = list()
-        load()
+        super().__init__(parent)
+        self.hotel_list = []
+        try:
+            file = open('hotel_list', 'rb')
+            self.hotel_list = pickle.load(file)
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        for i, h in enumerate(self.hotel_list):
+            Label(self, text=h.name).grid(row=i, column=0)
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1)
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2)
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.hotel_list), column=1)
 
-        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Find hotels and their ratings.", bg="light grey")
-        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.hotel_list):
+            r['text'] = h.get_average_rating()
 
-        label = Label(self, text="Find hotels and their ratings.", bg="light grey")
-        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.hotel_list):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
 
-        Label(self, text="Rating", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.76, rely=0.25, anchor=W)
-        Label(self, text="Your opinion", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.37, rely=0.25, anchor=W)
-
-        Label(self, text="Hotels", font=('Helvetica', 13, 'bold'), bg='light grey').place(relx=0.03, rely=0.25, anchor=W)
-        Label(self, text="Wellington", bg='light grey').place(relx=0.03, rely=0.35, anchor=W)
-        Label(self, text="W Hotel", bg='light grey').place(relx=0.03, rely=0.45, anchor=W)
-        Label(self, text="Ibis Hotel", bg='light grey').place(relx=0.03, rely=0.55, anchor=W)
-        Label(self, text="Yellow Hotel", bg='light grey').place(relx=0.03, rely=0.65, anchor=W)
-
-        o1 = Entry(self, width=9, highlightbackground='light grey')
-        o1.place(relx=0.37, rely=0.35, anchor=W)
-
-        o2 = Entry(self, width=9, highlightbackground='light grey')
-        o2.place(relx=0.37, rely=0.45, anchor=W)
-
-        o3 = Entry(self, width=9, highlightbackground='light grey')
-        o3.place(relx=0.37, rely=0.55, anchor=W)
-
-        o4 = Entry(self, width=9, highlightbackground='light grey')
-        o4.place(relx=0.37, rely=0.65, anchor=W)
-
-
-        l1 = Label(self, text='')
-        if len(hotels_r['Wellington']) > 0:
-            l1['text'] = round(sum(hotels_r['Wellington'])/len(hotels_r['Wellington']), 1)
-        l1.place(relx=0.82, rely=0.35, anchor=W)
-
-        l2 = Label(self, text='')
-        if len(hotels_r['W_hotel']) > 0:
-            l2['text'] = round(sum(hotels_r['W_hotel'])/len(hotels_r['W_hotel']), 1)
-        l2.place(relx=0.82, rely=0.45, anchor=W)
-
-        l3 = Label(self, text='')
-        if len(hotels_r['Ibis_hotel']) > 0:
-            l3['text'] = round(sum(hotels_r['Ibis_hotel'])/len(hotels_r['Ibis_hotel']), 1)
-        l3.place(relx=0.82, rely=0.55, anchor=W)
-
-        l4 = Label(self, text='')
-        if len(hotels_r['Yellow_hotel']) > 0:
-            l4['text'] = round(sum(hotels_r['Yellow_hotel'])/len(hotels_r['Yellow_hotel']), 1)
-        l4.place(relx=0.82, rely=0.65, anchor=W)
-
-        def save():
-            rate_download = open('hotels_rating.pickle', 'wb')
-            pickle.dump(hotels_r, rate_download)
-            rate_download.close()
-
-        def submit():
-            global hotels_r
-            w = hotels_r['Wellington']
-            if o1.get() == '5' or o1.get() == '4' or o1.get() == '3' or o1.get() == '2' or o1.get() == '1':
-                w.append(int(o1.get()))
-                average = round(sum(w)/len(w), 1)
-                l1['text'] = average
-            r = hotels_r['W_hotel']
-            if o2.get() == '5' or o2.get() == '4' or o2.get() == '3' or o2.get() == '2' or o2.get() == '1':
-                r.append(int(o2.get()))
-                average1 = round(sum(r)/len(r), 1)
-                l2['text'] = average1
-            i = hotels_r['Ibis_hotel']
-            if o3.get() == '5' or o3.get() == '4' or o3.get() == '3' or o3.get() == '2' or o3.get() == '1':
-                i.append(int(o3.get()))
-                average2 = round(sum(i)/len(i), 1)
-                l3['text'] = average2
-            y = hotels_r['Yellow_hotel']
-            if o4.get() == '5' or o4.get() == '4' or o4.get() == '3' or o4.get() == '2' or o4.get() == '1':
-                y.append(int(o4.get()))
-                average3 = round(sum(y)/len(y), 1)
-                l4['text'] = average3
-            save()
+    def save_to_file(self):
+        try:
+            file = open('hotel_list', 'wb')
+            pickle.dump(self.hotel_list, file)
+        except:
+            print('error')
 
 
         button1 = Button(self, text="submit", command=submit, highlightbackground='light grey')
