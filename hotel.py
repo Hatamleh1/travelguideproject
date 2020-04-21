@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 from hotel import *
-=======
-from hotel import *
-=======
->>>>>>> master
->>>>>>> master
+
 class Hotel:
     def __init__(self, name):
         self.ratings = []
@@ -23,12 +16,3 @@ class Hotel:
                 self.ratings.append(float(value))
         except:
             pass
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-=======
-
-=======
->>>>>>> master
->>>>>>> master

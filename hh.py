@@ -3,8 +3,6 @@ from tkinter import *
 import pickle
 from hotel import *
 
-accounts = {}
-hotels_dict = {}
 
 class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):
@@ -44,33 +42,32 @@ class TravelguideApp(Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
+
 # This code runs the pages, places root and shows different frames.
 
 
 # This is our login function.
 # The page of login
 
-
-
 class LoginPage(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
 
         userLbl = Label(self, text="Username:", bg='light grey')
-        userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+        userLbl.place(relx=0.5, rely=0.3, anchor=CENTER)
         userEnt = Entry(self, text='', highlightbackground='light grey')
-        userEnt.place(relx=0.5, rely=0.5, anchor=CENTER)
+        userEnt.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         passLbl = Label(self, text="Password:", bg='light grey')
-        passLbl.place(relx=0.5, rely=0.6, anchor=CENTER)
+        passLbl.place(relx=0.5, rely=0.5, anchor=CENTER)
         passEnt = Entry(self, text='', show='*', highlightbackground='light grey')
-        passEnt.place(relx=0.5, rely=0.7, anchor=CENTER)
+        passEnt.place(relx=0.5, rely=0.6, anchor=CENTER)
 
         loginBtn = Button(self, text="Login", command=lambda:CheckLogin(), highlightbackground='light grey')
-        loginBtn.place(relx=0.56, rely=0.8, anchor=CENTER)
+        loginBtn.place(relx=0.7, rely=0.72, anchor=CENTER, width=80)
 
         signupBtn = Button(self, text='Sign Up', highlightbackground='light grey', command=lambda: controller.show_frame(SignupPage))
-        signupBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
+        signupBtn.place(relx=0.3, rely=0.72, anchor=CENTER, width=80)
 
 
         # Checks if login is correct.
@@ -78,16 +75,13 @@ class LoginPage(Frame):
             upload = open('accounts.pickle', 'rb')
             accounts = pickle.load(upload)
 
-            if userEnt.get() in accounts and accounts[userEnt.get()] == passEnt.get():
+            if userEnt.get() in accounts and accounts[userEnt.get()] == passEnt.get() and accounts[userEnt.get()] != '':
                 controller.show_frame(main_page)
 
             else:
-                r = Tk()
-                r.title('D:')
-                r.geometry('150x50')
-                rlbl = Label(r, text='\n[!] Invalid Login')
-                rlbl.pack()
-                r.mainloop()
+                incorrect = Label(self, text='Username or password is incorrect. ', bg='light grey')
+                incorrect.place(relx=0.5, rely=0.85, anchor=CENTER)
+
 
 # Creates signup page.
 
@@ -101,6 +95,7 @@ class SignupPage(Frame):
         new_userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
         new_userEnt = Entry(self, text='', highlightbackground='light grey')
         new_userEnt.place(relx=0.5, rely=0.5, anchor=CENTER)
+        new_userEnt.lower()
 
         new_passLbl = Label(self, text="Create Password:", bg='light grey')
         new_passLbl.place(relx=0.5, rely=0.6, anchor=CENTER)
@@ -347,12 +342,8 @@ class hotels(Frame):
             print('error')
 
 
-        button1 = Button(self, text="submit", command=submit, highlightbackground='light grey')
-        button1.place(relx=0.41, rely=0.70)
-
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
 
 
 class restaurants(Frame):
