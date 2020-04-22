@@ -8,7 +8,7 @@ class Hotel:
     def get_average_rating(self):
         if len(self.ratings) == 0:
             return 'N/A'
-        return str(sum(self.ratings) / len(self.ratings))
+        return str(round(sum(self.ratings) / len(self.ratings), 1))
     
     def rate(self, value):
         try:

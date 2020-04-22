@@ -36,7 +36,7 @@ class TravelguideApp(Tk):
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
 
-        self.show_frame(LoginPage)
+        self.show_frame(hotels)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -92,22 +92,21 @@ class SignupPage(Frame):
         global new_userEnt
 
         new_userLbl = Label(self, text="Create Username:", bg='light grey')
-        new_userLbl.place(relx=0.5, rely=0.4, anchor=CENTER)
+        new_userLbl.place(relx=0.5, rely=0.3, anchor=CENTER)
         new_userEnt = Entry(self, text='', highlightbackground='light grey')
-        new_userEnt.place(relx=0.5, rely=0.5, anchor=CENTER)
-        new_userEnt.lower()
+        new_userEnt.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         new_passLbl = Label(self, text="Create Password:", bg='light grey')
-        new_passLbl.place(relx=0.5, rely=0.6, anchor=CENTER)
+        new_passLbl.place(relx=0.5, rely=0.5, anchor=CENTER)
         new_passEnt = Entry(self, text='', show='*', highlightbackground='light grey')
-        new_passEnt.place(relx=0.5, rely=0.7, anchor=CENTER)
+        new_passEnt.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 
         submitBtn = Button(self, text='Submit', command=lambda: FSSignup(), highlightbackground='light grey')
-        submitBtn.place(relx=0.4, rely=0.8, anchor=CENTER)
+        submitBtn.place(relx=0.7, rely=0.72, anchor=CENTER, width=80)
 
         cancelBtn = Button(self, text='Cancel', command=lambda: controller.show_frame(LoginPage), highlightbackground='light grey')
-        cancelBtn.place(relx=0.56, rely=0.8, anchor=CENTER)
+        cancelBtn.place(relx=0.3, rely=0.72, anchor=CENTER, width=80)
 
 
         def FSSignup():
@@ -292,7 +291,6 @@ class amsterdam_nav(Frame):
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-
 class gudie_info(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -303,10 +301,9 @@ class gudie_info(Frame):
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-
 class hotels(Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        super().__init__(parent, bg='light grey')
         self.hotel_list = []
         try:
             file = open('hotel_list', 'rb')
@@ -316,13 +313,17 @@ class hotels(Frame):
         self.rating_fields = []
         self.rating_labels = []
         for i, h in enumerate(self.hotel_list):
-            Label(self, text=h.name).grid(row=i, column=0)
-            self.rating_fields.append(Entry(self))
+            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, padx=5, pady=5)
+            self.rating_fields.append(Entry(self, width=10, highlightbackground='light grey'))
             self.rating_fields[-1].grid(row=i, column=1)
-            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels.append(Label(self, bg='light grey', text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2)
-        submit_button = Button(self, text='Submit', command=self.submit)
+
+        submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
         submit_button.grid(row=len(self.hotel_list), column=1)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
     def update_ratings(self):
         for r, h in zip(self.rating_labels, self.hotel_list):
@@ -340,10 +341,6 @@ class hotels(Frame):
             pickle.dump(self.hotel_list, file)
         except:
             print('error')
-
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 class restaurants(Frame):
@@ -377,8 +374,6 @@ class activities(Frame):
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-
-
 class spain(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
@@ -387,7 +382,6 @@ class spain(Frame):
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
 
 
 class germany(Frame):
@@ -408,8 +402,6 @@ class UK(Frame):
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-
 
 
 class france(Frame):
