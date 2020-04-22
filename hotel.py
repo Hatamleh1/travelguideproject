@@ -13,13 +13,9 @@ class Hotel:
     def get_average_rating(self):
         if len(self.ratings) == 0:
             return 'N/A'
-<<<<<<< HEAD
         return str(round(sum(self.ratings) / len(self.ratings), 1))
-    
-=======
-        return str(sum(self.ratings) / len(self.ratings))
 
->>>>>>> master
+
     def rate(self, value):
         try:
             if 0 <= float(value) <= 5:
