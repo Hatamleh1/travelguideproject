@@ -72,7 +72,6 @@ logout.place(relx=0.8, rely=0.9, anchor=CENTER)
 
 root.mainloop()
 
-=======
 hotels_r = {}
 
 class TravelguideApp(tk.Tk):
@@ -243,4 +242,3 @@ class hotels(tk.Frame):
 
 app = TravelguideApp()
 app.mainloop()
->>>>>>> master
