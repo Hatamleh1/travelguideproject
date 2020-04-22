@@ -1,6 +1,6 @@
-import tkinter as tk
 from tkinter import *
 import pickle
+from restaurant import *
 from hotel import *
 
 accounts = {}
@@ -188,7 +188,7 @@ class About_holland(Frame):
         label = Label(self, text="Here you can get all information \n about Holland needed before \n your trip to Holland.", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -199,7 +199,7 @@ class Best_visit(Frame):
         label = Label(self, text="Here you can read about the best \n time of the year to visit Holland", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -210,7 +210,7 @@ class Transport(Frame):
         label = Label(self, text="Here you can get information about \n Hollands pubic transportation", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -221,7 +221,7 @@ class Currency(Frame):
         label = Label(self, text="What currency does Holland have? \n Here you can find out. ", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -232,7 +232,7 @@ class Electricity(Frame):
         label = Label(self, text="Holland has this typ of electricity.", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -263,7 +263,7 @@ class City(Frame):
         w.config(bg="light grey")
         w.place(relx=0.5, rely=0.55, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -309,37 +309,46 @@ class Gudie_info_ams(Frame):
 class Hotels_ams(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        self.hotel_list = []
+        self.hotel_dict = {}
         try:
-            file = open('hotel_list_ams', 'rb')
-            self.hotel_list = pickle.load(file)
+            file = open('hotel_dict', 'rb')
+            self.hotel_dict = pickle.load(file)
         except:
             print('error')
+
         self.rating_fields = []
         self.rating_labels = []
-        for i, h in enumerate(self.hotel_list):
-            Label(self, text=h.name).grid(row=i, column=0)
+        self.city = "Amsterdam"
+        for i, h in enumerate(self.hotel_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
             self.rating_fields.append(Entry(self))
-            self.rating_fields[-1].grid(row=i, column=1)
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
-            self.rating_labels[-1].grid(row=i, column=2)
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+
         submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.hotel_list), column=1)
+        submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
     def update_ratings(self):
-        for r, h in zip(self.rating_labels, self.hotel_list):
+        for r, h in zip(self.rating_labels, self.hotel_dict[self.city]):
             r['text'] = h.get_average_rating()
 
     def submit(self):
-        for f, h in zip(self.rating_fields, self.hotel_list):
+        for f, h in zip(self.rating_fields, self.hotel_dict[self.city]):
             h.rate(f.get())
         self.update_ratings()
         self.save_to_file()
 
     def save_to_file(self):
         try:
-            file = open('hotel_list', 'wb')
-            pickle.dump(self.hotel_list, file)
+            file = open('hotel_dict', 'wb')
+            pickle.dump(self.hotel_dict, file)
         except:
             print('error')
 
@@ -350,12 +359,49 @@ class Hotels_ams(Frame):
 
 class Restaurants_ams(Frame):
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Here you can find the best \n restaurants.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        super().__init__(parent)
+        self.restaurant_dict = {}
+        try:
+            file = open('restaurant_dict', 'rb')
+            self.restaurant_dict = pickle.load(file)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        self.city = "Amsterdam"
+        for i, h in enumerate(self.restaurant_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+            r['text'] = h.get_average_rating()
+
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
+
+    def save_to_file(self):
+        try:
+            file = open('restaurant_dict', 'wb')
+            pickle.dump(self.restaurant_dict, file)
+        except:
+            print('error')
 
 
 
@@ -365,7 +411,7 @@ class Sightseeing_ams(Frame):
         label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -375,7 +421,7 @@ class Activities_ams(Frame):
         label = Label(self, text="Find the most interesting activities \n to do in Amsterdam. ", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -423,55 +469,101 @@ class Gudie_info_rot(Frame):
 class Hotels_rot(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        self.hotel_list = []
+        self.hotel_dict = {}
         try:
-            file2 = open('hotel_list_rot', 'rb')
-            self.hotel_list = pickle.load(file2)
+            file = open('hotel_dict', 'rb')
+            self.hotel_dict = pickle.load(file)
+
         except:
             print('error')
         self.rating_fields = []
         self.rating_labels = []
-        for i, h in enumerate(self.hotel_list):
-            Label(self, text=h.name).grid(row=i, column=0)
+        self.city = "Rotterdam"
+        for i, h in enumerate(self.hotel_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
             self.rating_fields.append(Entry(self))
-            self.rating_fields[-1].grid(row=i, column=1)
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
-            self.rating_labels[-1].grid(row=i, column=2)
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+
+        back_button = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav))
+        back_button.grid(row=len(self.hotel_dict[self.city]), column=1)
+
         submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.hotel_list), column=1)
+        submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
     def update_ratings(self):
-        for r, h in zip(self.rating_labels, self.hotel_list):
+        for r, h in zip(self.rating_labels, self.hotel_dict[self.city]):
             r['text'] = h.get_average_rating()
 
     def submit(self):
-        for f, h in zip(self.rating_fields, self.hotel_list):
+        for f, h in zip(self.rating_fields, self.hotel_dict[self.city]):
             h.rate(f.get())
         self.update_ratings()
         self.save_to_file()
 
     def save_to_file(self):
         try:
-            file2 = open('hotel_list_rot', 'wb')
-            pickle.dump(self.hotel_list_rot, file2)
+            file = open('hotel_dict', 'wb')
+            pickle.dump(self.hotel_dict, file)
         except:
             print('error')
 
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-
 class Restaurants_rot(Frame):
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Here you can find the best \n restaurants.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        super().__init__(parent, controller)
+        self.restaurant_dict = {}
+        try:
+            file = open('restaurant_dict', 'rb')
+            self.restaurant_dict = pickle.load(file)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        self.city = "Amsterdam"
+        for i, h in enumerate(self.restaurant_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+            r['text'] = h.get_average_rating()
 
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
+
+    def save_to_file(self):
+        try:
+            file = open('restaurant_dict', 'wb')
+            pickle.dump(self.restaurant_dict, file)
+        except:
+            print('error')
+
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+
+        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
+        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
 class Sightseeing_rot(Frame):
     def __init__(self, parent, controller):

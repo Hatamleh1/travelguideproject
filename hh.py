@@ -3,6 +3,7 @@ from tkinter import *
 import pickle
 from hotel import *
 
+accounts = {}
 
 class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):
@@ -30,13 +31,16 @@ class TravelguideApp(Tk):
             quit()
 
         self.frames = {}
-        for F in (main_page, holland, spain, germany, UK, france, LoginPage, SignupPage, about_holland, best_visit, currency, electricity, transport, city, amsterdam_nav, gudie_info_ams, hotels_ams, hotels_haag, haag_nav, hotels_rot, rotterdam_nav, gudie_info_rot, gudie_info_haag, restaurants, sightseeing, activities):
+        for F in (Main_page, Holland, Spain, Germany, UK, France, LoginPage, SignupPage, About_holland, Best_visit, Currency, Electricity, Transport, City,
+                  Amsterdam_nav, Guide_info_ams, Hotels_ams, Restaurants_ams, Sightseeing_ams, Activities_ams,
+                  Haag_nav, Guide_info_haag, Hotels_haag, Restaurants_haag, Sightseeing_haag, Activities_haag,
+                  Rotterdam_nav, Guide_info_rot, Hotels_rot, Restaurants_rot, Sightseeing_rot, Activities_rot):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
 
-        self.show_frame(amsterdam_nav)
+        self.show_frame(Amsterdam_nav)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -76,7 +80,7 @@ class LoginPage(Frame):
             accounts = pickle.load(upload)
 
             if userEnt.get() in accounts and accounts[userEnt.get()] == passEnt.get() and accounts[userEnt.get()] != '':
-                controller.show_frame(main_page)
+                controller.show_frame(Main_page)
 
             else:
                 incorrect = Label(self, text='Username or password is incorrect. ', bg='light grey')
@@ -119,7 +123,7 @@ class SignupPage(Frame):
 
 
 # This is the first page, choosing a country.
-class main_page(Frame):
+class Main_page(Frame):
    def __init__(self, parent, controller):
        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
        label = Label(self, text="Welcome to Trippy \n\n We will give you all the advice you \n need before and during your trip. \n\n Select you country below.", bg="light grey")
@@ -129,15 +133,15 @@ class main_page(Frame):
        def option_changed(*args):
            c = variable.get()
            if c == 'Holland':
-               controller.show_frame(holland)
+               controller.show_frame(Holland)
            elif c == 'Spain':
-               controller.show_frame(spain)
+               controller.show_frame(Spain)
            elif c == 'Germany':
-               controller.show_frame(germany)
+               controller.show_frame(Germany)
            elif c == 'UK':
                controller.show_frame(UK)
            elif c == 'France':
-               controller.show_frame(france)
+               controller.show_frame(France)
 
        variable = StringVar(self)
        variable.set("Select country") # default value
@@ -150,91 +154,90 @@ class main_page(Frame):
 # Holland code.
 # Buttons for Holland.
 
-class holland(Frame):
+class Holland(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="\n Here we provide general \n information regarding the \n country you are travelling to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
-        B1 = Button(self, text='About the country', command=lambda: controller.show_frame(about_holland), width=20, highlightbackground='light grey')
+        B1 = Button(self, text='About the country', command=lambda: controller.show_frame(About_holland), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
 
-        B2 = Button(self, text='Best time to visit', command=lambda: controller.show_frame(best_visit), width=20, highlightbackground='light grey')
+        B2 = Button(self, text='Best time to visit', command=lambda: controller.show_frame(Best_visit), width=20, highlightbackground='light grey')
         B2.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        B3 = Button(self, text='Public transportation', command=lambda: controller.show_frame(transport), width=20, highlightbackground='light grey')
+        B3 = Button(self, text='Public transportation', command=lambda: controller.show_frame(Transport), width=20, highlightbackground='light grey')
         B3.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        B4 = Button(self, text='Currency', command=lambda: controller.show_frame(currency), width=20, highlightbackground='light grey')
+        B4 = Button(self, text='Currency', command=lambda: controller.show_frame(Currency), width=20, highlightbackground='light grey')
         B4.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-        B5 = Button(self, text='Type of electricity', command=lambda: controller.show_frame(electricity), width=20, highlightbackground='light grey')
+        B5 = Button(self, text='Type of electricity', command=lambda: controller.show_frame(Electricity), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-        B6 = Button(self, text='Cities', command=lambda: controller.show_frame(city), width = 20, highlightbackground='light grey')
+        B6 = Button(self, text='Cities', command=lambda: controller.show_frame(City), width = 20, highlightbackground='light grey')
         B6.place(relx=0.5, rely=0.8, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.23, rely=0.9, anchor=CENTER)
 
 
-# Page about Holland
-class about_holland(Frame):
+class About_holland(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can get all information \n about Holland needed before \n your trip to Holland.", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # Best time to visit.
-class best_visit(Frame):
+class Best_visit(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can read about the best \n time of the year to visit Holland", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # Transportation information about Holland.
-class transport(Frame):
+class Transport(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Here you can get information about \n Hollands pubic transportation", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # Currency information about Holland.
-class currency(Frame):
+class Currency(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="What currency does Holland have? \n Here you can find out. ", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # Electricity information about Holland.
-class electricity(Frame):
+class Electricity(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Holland has this typ of electricity.", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # This is the page where you can pick any city in Holland.
-class city(Frame):
+class City(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="Select the city you are visiting \n and we will show you our advice.", bg='light grey')
@@ -243,15 +246,15 @@ class city(Frame):
         def option_changed(*args):
             c = variable.get()
             if c == 'Amsterdam':
-                controller.show_frame(amsterdam_nav)
+                controller.show_frame(Amsterdam_nav)
             elif c == 'Haag':
-                controller.show_frame(haag_nav)
+                controller.show_frame(Haag_nav)
             elif c == 'Rotterdam':
-                controller.show_frame(rotterdam_nav)
-            elif c == 'Utrecht':
-                controller.show_frame(utrecht_nav)
-            elif c == 'Best':
-                controller.show_frame(best_nav)
+                controller.show_frame(Rotterdam_nav)
+            # elif c == 'Utrecht':
+            #     controller.show_frame(Utrecht_nav)
+            # elif c == 'Best':
+            #     controller.show_frame(Best_nav)
 
         variable = StringVar(self)
         variable.set("Select city") # default value
@@ -260,50 +263,50 @@ class city(Frame):
         w.config(bg="light grey")
         w.place(relx=0.5, rely=0.55, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(holland), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
-
+# -------------------------------- Amsterdam --------------------------------
 # Navigational page of Amsterdam.
-class amsterdam_nav(Frame):
+class Amsterdam_nav(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="\n What are you looking for? \n Here we provide all kinds of \n actitives, resturants to go to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
 
-        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(gudie_info_ams), width=20, highlightbackground='light grey')
+        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(Guide_info_ams), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
 
-        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(hotels_ams), width=20, highlightbackground='light grey')
+        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(Hotels_ams), width=20, highlightbackground='light grey')
         B2.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(restaurants), width=20, highlightbackground='light grey')
+        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(Restaurants_ams), width=20, highlightbackground='light grey')
         B3.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(sightseeing), width=20, highlightbackground='light grey')
+        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(Sightseeing_ams), width=20, highlightbackground='light grey')
         B4.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(activities), width=20, highlightbackground='light grey')
+        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(Activities_ams   ), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(city), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(City), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class gudie_info_ams(Frame):
+class Guide_info_ams(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Amsterdam.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class hotels_ams(Frame):
+class Hotels_ams(Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent, bg='light grey')
+        super().__init__(parent)
         self.hotel_dict = {}
         try:
             file = open('hotel_dict', 'rb')
@@ -314,27 +317,23 @@ class hotels_ams(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Amsterdam"
-        headline = Label(self, text='Here you can rate hotels.\n', bg='light grey')
-        headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.hotel_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5))
-            self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
-        submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
-        submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-        #self.img = PhotoImage(file = 'oval.gif')
-        #image_button = Button(self, image=self.img, height=300, width=400)
-        #image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.hotel_dict[self.city]), column=0)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+        back_Btn = Button(self, text="Back", command=controller.show_frame(Amsterdam_nav))
+        back_Btn.grid(row=len(self.hotel_dict[self.city]), column=1)
 
     def update_ratings(self):
         for r, h in zip(self.rating_labels, self.hotel_dict[self.city]):
@@ -353,45 +352,126 @@ class hotels_ams(Frame):
         except:
             print('error')
 
-#######
-# All rotterdam.
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.hotel_dict[self.city]):
+            r['text'] = h.get_average_rating()
 
-class rotterdam_nav(Frame):
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.hotel_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
+
+    def save_to_file(self):
+        try:
+            file = open('hotel_dict', 'wb')
+            pickle.dump(self.hotel_dict, file)
+        except:
+            print('error')
+
+class Restaurants_ams(Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+        self.restaurant_dict = {}
+        try:
+            file = open('restaurant_dict', 'rb')
+            self.restaurant_dict = pickle.load(file)
+
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        self.city = "Amsterdam"
+        for i, h in enumerate(self.restaurant_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+            r['text'] = h.get_average_rating()
+
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
+
+    def save_to_file(self):
+        try:
+            file = open('restaurant_dict', 'wb')
+            pickle.dump(self.restaurant_dict, file)
+        except:
+            print('error')
+
+class Sightseeing_ams(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+
+class Activities_ams(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Find the most interesting activities \n to do in Amsterdam. ", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+# ______________________________ Rotterdam ____________________________
+
+class Rotterdam_nav(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="\n What are you looking for? \n Here we provide all kinds of \n actitives, resturants to go to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
 
-        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(gudie_info_rot), width=20, highlightbackground='light grey')
+        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(Guide_info_rot), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
 
-        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(hotels_rot), width=20, highlightbackground='light grey')
+        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(Hotels_rot), width=20, highlightbackground='light grey')
         B2.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(restaurants), width=20, highlightbackground='light grey')
+        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(Restaurants_rot), width=20, highlightbackground='light grey')
         B3.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(sightseeing), width=20, highlightbackground='light grey')
+        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(Sightseeing_rot), width=20, highlightbackground='light grey')
         B4.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(activities), width=20, highlightbackground='light grey')
+        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(Activities_rot), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(city), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(City), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
-class gudie_info_rot(Frame):
+class Guide_info_rot(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Rotterdam.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class hotels_rot(Frame):
+class Hotels_rot(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg='light grey')
         self.hotel_dict = {}
@@ -419,7 +499,7 @@ class hotels_rot(Frame):
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
         submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         #self.img = PhotoImage(file = 'oval.gif')
@@ -443,47 +523,114 @@ class hotels_rot(Frame):
         except:
             print('error')
 
-##############################
-# ALL HAAG
+class Restaurants_rot(Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+        self.restaurant_dict = {}
+        try:
+            file = open('restaurant_dict', 'rb')
+            self.restaurant_dict = pickle.load(file)
+
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        self.city = "Amsterdam"
+        for i, h in enumerate(self.restaurant_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+            r['text'] = h.get_average_rating()
+
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
+
+    def save_to_file(self):
+        try:
+            file = open('restaurant_dict', 'wb')
+            pickle.dump(self.restaurant_dict, file)
+        except:
+            print('error')
+
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+
+        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
+        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+
+class Sightseeing_rot(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Excited to go on some sightseeing. \n Laith Mathilda is rated highly \n so don't miss it.", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class haag_nav(Frame):
+class Activities_rot(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
+        label = Label(self, text="Find the most interesting activities \n to do in Rotterdam. ", bg="light grey")
+        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+
+
+# -------------------------------- The Hague --------------------------------
+
+class Haag_nav(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
         label = Label(self, text="\n What are you looking for? \n Here we provide all kinds of \n actitives, resturants to go to.", bg='light grey')
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
 
-        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(gudie_info_haag), width=20, highlightbackground='light grey')
+        B1 = Button(self, text='Guide information', command=lambda: controller.show_frame(Guide_info_haag), width=20, highlightbackground='light grey')
         B1.place(relx=0.5, rely=0.3, anchor=CENTER)
 
-        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(hotels_haag), width=20, highlightbackground='light grey')
+        B2 = Button(self, text='Hotels', command=lambda: controller.show_frame(Hotels_haag), width=20, highlightbackground='light grey')
         B2.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(restaurants), width=20, highlightbackground='light grey')
+        B3 = Button(self, text='Restaurants', command=lambda: controller.show_frame(Restaurants_rot), width=20, highlightbackground='light grey')
         B3.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(sightseeing), width=20, highlightbackground='light grey')
+        B4 = Button(self, text='Sightseeing', command=lambda: controller.show_frame(Sightseeing_haag), width=20, highlightbackground='light grey')
         B4.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(activities), width=20, highlightbackground='light grey')
+        B5 = Button(self, text='Activities', command=lambda: controller.show_frame(Activities_haag), width=20, highlightbackground='light grey')
         B5.place(relx=0.5, rely=0.7, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(city), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(City), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class gudie_info_haag(Frame):
+class Guide_info_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Haag.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(haag_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class hotels_haag(Frame):
+class Hotels_haag(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg='light grey')
         self.hotel_dict = {}
@@ -511,7 +658,7 @@ class hotels_haag(Frame):
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
         submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(haag_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
         #self.img = PhotoImage(file = 'oval.gif')
@@ -535,70 +682,94 @@ class hotels_haag(Frame):
         except:
             print('error')
 
-
-
-
-
-
-
-######
-#Integrating these
-
-
-class restaurants(Frame):
+class Restaurants_haag(Frame):
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Here you can find the best \n restaurants.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        super().__init__(parent)
+        self.restaurant_dict = {}
+        try:
+            file = open('restaurant_dict', 'rb')
+            self.restaurant_dict = pickle.load(file)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
+        except:
+            print('error')
+        self.rating_fields = []
+        self.rating_labels = []
+        self.city = "Haag"
+        for i, h in enumerate(self.restaurant_dict[self.city]):
+            padding = 5
+            if i == 0:
+                padding = 50
+            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+            self.rating_fields.append(Entry(self))
+            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+            self.rating_labels.append(Label(self, text=h.get_average_rating()))
+            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
+    def update_ratings(self):
+        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+            r['text'] = h.get_average_rating()
 
+    def submit(self):
+        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+            h.rate(f.get())
+        self.update_ratings()
+        self.save_to_file()
 
-class sightseeing(Frame):
+    def save_to_file(self):
+        try:
+            file = open('restaurant_dict', 'wb')
+            pickle.dump(self.restaurant_dict, file)
+        except:
+            print('error')
+
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+
+        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
+        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+
+class Sightseeing_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class activities(Frame):
+class Activities_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Find the most interesting activities \n to do in Amsterdam. ", bg="light grey")
+        label = Label(self, text="Find the most interesting activities \n to do in Haag. ", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
+# _____________________________ Coming Soon countries ________________________________
 
 
-###################
-
-# Coming Soon countries
-
-
-class spain(Frame):
+class Spain(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Coming soon", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class germany(Frame):
+class Germany(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Coming soon", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
@@ -608,21 +779,20 @@ class UK(Frame):
         label = Label(self, text="Coming soon", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
-class france(Frame):
+class France(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Coming soon", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(main_page), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Main_page), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 
 # call and run code
-
 app = TravelguideApp()
 app.mainloop()
