@@ -3,10 +3,10 @@ import pickle
 
 file = open('restaurant_dict', 'wb')
 
-d = {"Amsterdam": [Restaurant("Amsterdam1 Restaurant"), Restaurant("Amsterdam2 Restaurant"), Restaurant("Amsterdam3 Restaurant"), Restaurant("Amsterdam4 Restaurant")],
-     "Haag": [Restaurant("Hague1 Restaurant"), Restaurant("Hague2 Restaurant"), Restaurant("Hague3 Restaurant"), Restaurant("Hague4 Restaurant")],
-     "Rotterdam": [Restaurant("Rotterdam Restaurant"), Restaurant("Rotterdam2 Restaurant"), Restaurant("Rotterdam3 Restaurant"), Restaurant("Rotterdam4 Restaurant")],
-     "Best": [Restaurant("Best Restaurant"), Restaurant("Best2 Restaurant"), Restaurant("Best3 Restaurant"), Restaurant("Best4 Restaurant")]}
+d = {"Amsterdam": [Restaurant("Amsterdam1 Rest"), Restaurant("Amsterdam2 Rest"), Restaurant("Amsterdam3 Rest"), Restaurant("Amsterdam4 Rest")],
+     "Haag": [Restaurant("Hague1 Rest"), Restaurant("Hague2 Rest"), Restaurant("Hague3 Rest"), Restaurant("Hague4 Rest")],
+     "Rotterdam": [Restaurant("Rotterdam Rest"), Restaurant("Rotterdam2 Rest"), Restaurant("Rotterdam3 Rest"), Restaurant("Rotterdam4 Rest")],
+     }
 
 pickle.dump(d, file)
 file.close()

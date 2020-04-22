@@ -376,14 +376,10 @@ class Restaurants_ams(Frame):
 
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
-<<<<<<< Updated upstream
-        back_Btn = Button(self, text="Back", command=lambda: controller.show_frame(Restaurants_ams))
-        back_Btn.grid(row=len(self.restaurant_dict[self.city]), column=2)
-=======
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
->>>>>>> Stashed changes
+
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
@@ -538,11 +534,9 @@ class Restaurants_rot(Frame):
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
 
-        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
-        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
-        submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
 
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
@@ -565,14 +559,12 @@ class Restaurants_rot(Frame):
         except:
             print('error')
 
-<<<<<<< Updated upstream
-=======
 
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
->>>>>>> Stashed changes
+
 class Sightseeing_rot(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
@@ -709,12 +701,10 @@ class Restaurants_haag(Frame):
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
 
-<<<<<<< Updated upstream
-=======
-        back_button = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav))
-        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
->>>>>>> Stashed changes
+
     def update_ratings(self):
         for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
             r['text'] = h.get_average_rating()
@@ -732,10 +722,6 @@ class Restaurants_haag(Frame):
         except:
             print('error')
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
