@@ -24,6 +24,7 @@ class TravelguideApp(Tk):
         menubbar.add_cascade(label="Account", menu=account_menu)
         Tk.config(self, menu=menubbar)
 
+
         def logout():
             self.show_frame(LoginPage)
 
@@ -31,7 +32,7 @@ class TravelguideApp(Tk):
             quit()
 
         self.frames = {}
-        for F in (Main_page, Holland, LoginPage, SignupPage, About_holland, Best_visit, Currency, Electricity, Transport, City,
+        for F in (Main_page, Spain, UK, France, Germany, Holland, LoginPage, SignupPage, About_holland, Best_visit, Currency, Electricity, Transport, City,
                   Amsterdam_nav, Guide_info_ams, Hotels_ams, Restaurants_ams, Sightseeing_ams, Activities_ams,
                   Haag_nav, Guide_info_haag, Hotels_haag, Restaurants_haag, Sightseeing_haag, Activities_haag,
                   Rotterdam_nav, Guide_info_rot, Hotels_rot, Restaurants_rot, Sightseeing_rot, Activities_rot):
@@ -40,7 +41,7 @@ class TravelguideApp(Tk):
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
 
-        self.show_frame(Amsterdam_nav)
+        self.show_frame(LoginPage)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -329,7 +330,7 @@ class Hotels_ams(Frame):
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
-        back_Btn = Button(self, text="Back", command=controller.show_frame(Amsterdam_nav))
+        back_Btn = Button(self, text="Back", command=lambda: controller.show_frame(Amsterdam_nav))
         back_Btn.grid(row=len(self.hotel_dict[self.city]), column=1)
 
     def update_ratings(self):
@@ -375,6 +376,8 @@ class Restaurants_ams(Frame):
 
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+        back_Btn = Button(self, text="Back", command=lambda: controller.show_frame(Restaurants_ams))
+        back_Btn.grid(row=len(self.restaurant_dict[self.city]), column=2)
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
@@ -506,7 +509,7 @@ class Hotels_rot(Frame):
 
 class Restaurants_rot(Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent, controller)
+        super().__init__(parent)
         self.restaurant_dict = {}
         try:
             file = open('restaurant_dict', 'rb')
@@ -527,6 +530,13 @@ class Restaurants_rot(Frame):
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+
+        # self.img = PhotoImage(file = 'oval.gif')
+        # image_button = Button(self, image=self.img, height=300, width=400)
+        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+
     def update_ratings(self):
         for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
             r['text'] = h.get_average_rating()
@@ -543,15 +553,6 @@ class Restaurants_rot(Frame):
             pickle.dump(self.restaurant_dict, file)
         except:
             print('error')
-
-        submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
-
-        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
-        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
-        # self.img = PhotoImage(file = 'oval.gif')
-        # image_button = Button(self, image=self.img, height=300, width=400)
-        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
 class Sightseeing_rot(Frame):
     def __init__(self, parent, controller):
@@ -686,6 +687,9 @@ class Restaurants_haag(Frame):
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
+        submit_button = Button(self, text='Submit', command=self.submit)
+        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+
     def update_ratings(self):
         for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
             r['text'] = h.get_average_rating()
@@ -703,11 +707,7 @@ class Restaurants_haag(Frame):
         except:
             print('error')
 
-        submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
 
-        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
-        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)

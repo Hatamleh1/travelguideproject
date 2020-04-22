@@ -3,6 +3,7 @@ from tkinter import *
 import pickle
 from hotel import *
 
+accounts = {}
 
 class TravelguideApp(Tk):
     def __init__(self, *args, **kwargs):

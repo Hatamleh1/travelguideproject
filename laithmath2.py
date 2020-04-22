@@ -74,7 +74,8 @@ class restaurant(Frame):
         except:
             print('error')
 
-
+        back_Btn = Button(self, text="Back", command=controller.show_frame(Restaurant))
+        back_Btn.grid(row=len(self, self.hotel_dict[self.city], column=2))
 
 app = TravelguideApp()
 app.mainloop()

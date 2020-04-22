@@ -5,7 +5,7 @@ from hotel import *
 
 accounts = {}
 
-class TravelguideApp(Tk):
+class TravelguideApp(Frame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title('TravelguideApp')
@@ -247,8 +247,8 @@ class City(Frame):
             c = variable.get()
             if c == 'Amsterdam':
                 controller.show_frame(Amsterdam_nav)
-            elif c == 'Haag':
-                controller.show_frame(spain)
+            # elif c == 'Haag':
+            #     controller.show_frame(spain)
             elif c == 'Rotterdam':
                 controller.show_frame(Rotterdam_nav)
             elif c == 'Utrecht':
@@ -313,12 +313,12 @@ class Hotels_ams(Frame):
         try:
             file = open('hotel_dict', 'rb')
             self.hotel_dict = pickle.load(file)
+
         except:
             print('error')
-
         self.rating_fields = []
         self.rating_labels = []
-        self.city = "Amsterdam"
+        self.city = "Rotterdam"
         for i, h in enumerate(self.hotel_dict[self.city]):
             padding = 5
             if i == 0:
@@ -329,79 +329,61 @@ class Hotels_ams(Frame):
             self.rating_labels.append(Label(self, text=h.get_average_rating()))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
+        back_button = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav))
+        back_button.grid(row=len(self.hotel_dict[self.city]), column=1)
+
         submit_button = Button(self, text='Submit', command=self.submit)
         submit_button.grid(row=len(self.hotel_dict[self.city]), column=1)
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
 
-    def update_ratings(self):
-        for r, h in zip(self.rating_labels, self.hotel_dict[self.city]):
-            r['text'] = h.get_average_rating()
 
-    def submit(self):
-        for f, h in zip(self.rating_fields, self.hotel_dict[self.city]):
-            h.rate(f.get())
-        self.update_ratings()
-        self.save_to_file()
-
-    def save_to_file(self):
-        try:
-            file = open('hotel_dict', 'wb')
-            pickle.dump(self.hotel_dict, file)
-        except:
-            print('error')
-
-
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
-        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
-
-class Restaurants_ams(Frame):
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.restaurant_dict = {}
-        try:
-            file = open('restaurant_dict', 'rb')
-            self.restaurant_dict = pickle.load(file)
-
-        except:
-            print('error')
-        self.rating_fields = []
-        self.rating_labels = []
-        self.city = "Amsterdam"
-        for i, h in enumerate(self.restaurant_dict[self.city]):
-            padding = 5
-            if i == 0:
-                padding = 50
-            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
-            self.rating_fields.append(Entry(self))
-            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating()))
-            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
-
-        submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
-        # self.img = PhotoImage(file = 'oval.gif')
-        # image_button = Button(self, image=self.img, height=300, width=400)
-        # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
-
-    def update_ratings(self):
-        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
-            r['text'] = h.get_average_rating()
-
-    def submit(self):
-        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
-            h.rate(f.get())
-        self.update_ratings()
-        self.save_to_file()
-
-    def save_to_file(self):
-        try:
-            file = open('restaurant_dict', 'wb')
-            pickle.dump(self.restaurant_dict, file)
-        except:
-            print('error')
+# class Restaurants_ams(Frame):
+#     def __init__(self, parent, controller):
+#         super().__init__(parent)
+#         self.restaurant_dict = {}
+#         try:
+#             file = open('restaurant_dict', 'rb')
+#             self.restaurant_dict = pickle.load(file)
+#
+#         except:
+#             print('error')
+#         self.rating_fields = []
+#         self.rating_labels = []
+#         self.city = "Amsterdam"
+#         for i, h in enumerate(self.restaurant_dict[self.city]):
+#             padding = 5
+#             if i == 0:
+#                 padding = 50
+#             Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+#             self.rating_fields.append(Entry(self))
+#             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+#             self.rating_labels.append(Label(self, text=h.get_average_rating()))
+#             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+#
+#         submit_button = Button(self, text='Submit', command=self.submit)
+#         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+#         # self.img = PhotoImage(file = 'oval.gif')
+#         # image_button = Button(self, image=self.img, height=300, width=400)
+#         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
+#
+#     def update_ratings(self):
+#         for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+#             r['text'] = h.get_average_rating()
+#
+#     def submit(self):
+#         for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+#             h.rate(f.get())
+#         self.update_ratings()
+#         self.save_to_file()
+#
+#     def save_to_file(self):
+#         try:
+#             file = open('restaurant_dict', 'wb')
+#             pickle.dump(self.restaurant_dict, file)
+#         except:
+#             print('error')
 
 
 
@@ -516,51 +498,52 @@ class Hotels_rot(Frame):
             print('error')
 
 
-class Restaurants_rot(Frame):
-    def __init__(self, parent, controller):
-        super().__init__(parent, controller)
-        self.restaurant_dict = {}
-        try:
-            file = open('restaurant_dict', 'rb')
-            self.restaurant_dict = pickle.load(file)
+# class Restaurants_rot(Frame):
+#     def __init__(self, parent, controller):
+#         super().__init__(self, parent)
+#         self.restaurant_dict = {}
+#         try:
+#             file = open('restaurant_dict', 'rb')
+#             self.restaurant_dict = pickle.load(file)
+#
+#         except:
+#             print('error')
+#         self.rating_fields = []
+#         self.rating_labels = []
+#         self.city = "Amsterdam"
+#         for i, h in enumerate(self.restaurant_dict[self.city]):
+#             padding = 5
+#             if i == 0:
+#                 padding = 50
+#             Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
+#             self.rating_fields.append(Entry(self))
+#             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
+#             self.rating_labels.append(Label(self, text=h.get_average_rating()))
+#             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
+#
+#     def update_ratings(self):
+#         for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
+#             r['text'] = h.get_average_rating()
+#
+#     def submit(self):
+#         for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
+#             h.rate(f.get())
+#         self.update_ratings()
+#         self.save_to_file()
+#
+#     def save_to_file(self):
+#         try:
+#             file = open('restaurant_dict', 'wb')
+#             pickle.dump(self.restaurant_dict, file)
+#         except:
+#             print('error')
+#
+#         submit_button = Button(self, text='Submit', command=self.submit)
+#         submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
+#
+#         back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
+#         back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
 
-        except:
-            print('error')
-        self.rating_fields = []
-        self.rating_labels = []
-        self.city = "Amsterdam"
-        for i, h in enumerate(self.restaurant_dict[self.city]):
-            padding = 5
-            if i == 0:
-                padding = 50
-            Label(self, text=h.name).grid(row=i, column=0, pady=(padding, 5))
-            self.rating_fields.append(Entry(self))
-            self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating()))
-            self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
-
-    def update_ratings(self):
-        for r, h in zip(self.rating_labels, self.restaurant_dict[self.city]):
-            r['text'] = h.get_average_rating()
-
-    def submit(self):
-        for f, h in zip(self.rating_fields, self.restaurant_dict[self.city]):
-            h.rate(f.get())
-        self.update_ratings()
-        self.save_to_file()
-
-    def save_to_file(self):
-        try:
-            file = open('restaurant_dict', 'wb')
-            pickle.dump(self.restaurant_dict, file)
-        except:
-            print('error')
-
-        submit_button = Button(self, text='Submit', command=self.submit)
-        submit_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
-
-        back_button = Button(self, text='Submit', command=lambda: controller.show_frame(Rotterdam_nav))
-        back_button.grid(row=len(self.restaurant_dict[self.city]), column=1)
         # self.img = PhotoImage(file = 'oval.gif')
         # image_button = Button(self, image=self.img, height=300, width=400)
         # image_button.grid(row=len(self.hotel_dict[self.city]), column=2)
@@ -622,3 +605,88 @@ class france(Frame):
 # call and run code
 app = TravelguideApp()
 app.mainloop()
+
+
+# __________________________________ Restaurant File ____________________________________________
+from restaurant import *
+
+
+class City:
+    def __init__(self, city):
+        self.city = city
+
+class Restaurant:
+    def __init__(self, name):
+        self.ratings = []
+        self.name = name
+
+    def get_average_rating(self):
+        if len(self.ratings) == 0:
+            return 'N/A'
+        return str(sum(self.ratings) / len(self.ratings))
+
+    def rate(self, value):
+        try:
+            if 0 <= float(value) <= 5:
+                self.ratings.append(float(value))
+        except:
+            pass
+
+# __________________________________ Hotel File ____________________________________________
+from hotel import *
+
+
+class City:
+    def __init__(self, city):
+        self.city = city
+
+class Hotel:
+    def __init__(self, name):
+        self.ratings = []
+        self.name = name
+
+    def get_average_rating(self):
+        if len(self.ratings) == 0:
+            return 'N/A'
+        return str(sum(self.ratings) / len(self.ratings))
+
+    def rate(self, value):
+        try:
+            if 0 <= float(value) <= 5:
+                self.ratings.append(float(value))
+        except:
+            pass
+
+
+# __________________________________ Populator File ____________________________________________
+from hotel import *
+import pickle
+
+file = open('hotel_dict', 'wb')
+
+d = {"Amsterdam": [Hotel("Amsterdam1 Hotel"), Hotel("Amsterdam2 Hotel"), Hotel("Amsterdam3 Hotel"), Hotel("Amsterdam4 Hotel")],
+     "The Hague": [Hotel("Hague1 Hotel"), Hotel("Hague2 Hotel"), Hotel("Hague3 Hotel"), Hotel("Hague4 Hotel")],
+     "Rotterdam": [Hotel("Rotterdam Hotel"), Hotel("Rotterdam2 Hotel"), Hotel("Roterdam3 Hotel"), Hotel("Rotterdam4 Hotel")],
+     "Best": [Hotel("Best Hotel"), Hotel("Best2 Hotel"), Hotel("Best3 Hotel"), Hotel("Best4 Hotel")]}
+
+
+
+pickle.dump(d, file)
+file.close()
+
+# __________________________________ Populator_2 File ____________________________________________
+from restaurant import *
+import pickle
+
+file = open('restaurant_dict', 'wb')
+
+d = {"Amsterdam": [Restaurant("Amsterdam1 Restaurant"), Restaurant("Amsterdam2 Restaurant"), Restaurant("Amsterdam3 Restaurant"), Restaurant("Amsterdam4 Restaurant")],
+     "The Hague": [Restaurant("Hague1 Restaurant"), Restaurant("Hague2 Restaurant"), Restaurant("Hague3 Restaurant"), Restaurant("Hague4 Restaurant")],
+     "Rotterdam": [Restaurant("Rotterdam Restaurant"), Restaurant("Rotterdam2 Restaurant"), Restaurant("Roterdam3 Restaurant"), Restaurant("Rotterdam4 Restaurant")],
+     "Best": [Restaurant("Best Restaurant"), Restaurant("Best2 Restaurant"), Restaurant("Best3 Restaurant"), Restaurant("Best4 Restaurant")]}
+
+
+
+pickle.dump(d, file)
+file.close()
+

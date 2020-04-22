@@ -75,6 +75,8 @@ class hotels(Frame):
             print('error')
 
 
+        # back_button = Button(self, text='Back', command=lambda: controller)
+        # back_button.grid(row=len(self.hotel_dict[self.city]), column=1)
 
 app = TravelguideApp()
 app.mainloop()
