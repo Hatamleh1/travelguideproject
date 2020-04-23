@@ -323,7 +323,7 @@ class Hotels_ams(Frame):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, anchor='w', width=15, font=("Ariel", 12), bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=3)
+            Label(self, text=h.name, anchor='e', width=15, font=("Ariel", 12), bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=3)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating(), font=("Ariel", 12), bg='light grey'))
@@ -374,7 +374,7 @@ class Restaurants_ams(Frame):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey', anchor='w', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
+            Label(self, text=h.name, bg='light grey', anchor='e', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating(),font=("Ariel", 12), bg='light grey'))
@@ -482,10 +482,10 @@ class Hotels_rot(Frame):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey', anchor='w', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5),  padx=5)
+            Label(self, text=h.name, bg='light grey', anchor='e', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5),  padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey', font=("Ariel", 12)))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
@@ -528,16 +528,16 @@ class Restaurants_rot(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Rotterdam"
-        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey', font=('Ariel', 15))
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.restaurant_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=5)
+            Label(self, text=h.name, bg='light grey', anchor='e', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey', font=('Ariel', 12)))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
@@ -645,16 +645,16 @@ class Hotels_haag(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Haag"
-        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', bg='light grey', font=("Ariel", 15))
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.hotel_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=15)
+            Label(self, text=h.name, bg='light grey', anchor='e', width=12, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=15)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey', font=("Ariel", 12)))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
@@ -697,16 +697,16 @@ class Restaurants_haag(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Haag"
-        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey', font=("Ariel", 15))
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.restaurant_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=15)
+            Label(self, text=h.name, bg='light grey', anchor='e', width=12, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=15)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey', font=("Ariel", 12)))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
