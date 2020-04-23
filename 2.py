@@ -297,7 +297,7 @@ class Guide_info_ams(Frame):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Amsterdam.", bg="light grey", font=("Ariel", 13))
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
-        label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city from the perspective of its canals.", bg="light grey", font=("Ariel", 13), width=40)
+        label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city from the perspective of its canals.", bg="light grey", font=("Ariel", 13), width=10)
         label.place(relx=0.5, rely=0.2, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
@@ -323,7 +323,7 @@ class Hotels_ams(Frame):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey', font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=3)
+            Label(self, text=h.name, anchor='w', width=15, font=("Ariel", 12), bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=3)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating(), font=("Ariel", 12), bg='light grey'))
@@ -374,7 +374,7 @@ class Restaurants_ams(Frame):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey', font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
+            Label(self, text=h.name, bg='light grey', anchor='w', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating(),font=("Ariel", 12), bg='light grey'))
@@ -476,13 +476,13 @@ class Hotels_rot(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Rotterdam"
-        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', bg='light grey', font=("Ariel", 15))
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.hotel_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5),  padx=5)
+            Label(self, text=h.name, bg='light grey', anchor='w', width=15, font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5),  padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
             self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
