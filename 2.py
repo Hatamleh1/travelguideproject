@@ -186,26 +186,26 @@ class Holland(Frame):
 class About_holland(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
-        label = Label(self, text="Here you can get all information \n about Holland needed before \n your trip to Holland:", bg='light grey')
-        label.pack(side='top', expand=True)
+        label = Label(self, text="Information about Netherlands:", bg='light grey')
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         about = Label(self, text="The Netherlands, a country in northwestern Europe, is known for a flat landscape of"
                                  "canals, tulip fields, windmills and cycling routes. Amsterdam, the capital, is home to"
                                  "the Rijksmuseum, Van Gogh Museum and the house where Jewish diarist Anne Frank hid during WWII.", bg='light grey', anchor='e', width=24, wraplength=200, justify=LEFT)
-        about.pack(side="top", expand=True)
+        about.place(relx=0.05, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
-        back_btn.pack(side="top", expand=True)
+        back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 # Best time to visit.
 class Best_visit(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
-        label = Label(self, text="Here you can read about the best \n time of the year to visit Holland:", bg='light grey', anchor='w')
-        label.place(relx=0.1, rely=0.2)
+        label = Label(self, text="Best time to visit Netherlands:", bg='light grey')
+        label.place(relx=0.5, rely=0.15, anchor=CENTER)
 
         visit = Label(self, text="The best time weather wise is from mid April to mid October. July and August are the peak months for visitors.", bg="light gray", anchor='w', width=23, wraplength=200, justify=LEFT )
-        visit.place(relx=0.1, rely=0.4)
+        visit.place(relx=0.1, rely=0.3)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -215,13 +215,13 @@ class Best_visit(Frame):
 class Transport(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
-        label = Label(self, text="Here you can get information about \n Hollands pubic transportation", bg='light grey')
-        label.place(relx=0.1, rely=0.1)
+        label = Label(self, text="Netherlands transportation", bg='light grey')
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         trans = Label(self, text="The Netherlands have an extensive public transport network, which makes in easy to travel around the country. "
                                  "Staying in Amsterdam, you might use GVB trams, buses, metro and ferries, while when you travel to other cities "
                                  "and destinations, you will definitely need to take a train.", bg='light grey', width=24, wraplength=200, justify=LEFT)
-        trans.place(relx=0.1, rely=0.25)
+        trans.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -231,11 +231,11 @@ class Transport(Frame):
 class Currency(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
-        label = Label(self, text="What currency does Holland have? \n Here you can find out. ", bg='light grey')
-        label.place(relx=0.1, rely=0.1)
+        label = Label(self, text="What currency does Holland have? ", bg='light grey')
+        label.place(relx=0.5, rely=0.2, anchor=CENTER)
 
-        cur = Label(self, text='The oficial currency of the Netherlands is Euro', bg='light grey', width=24, wraplength=200, justify=LEFT)
-        cur.place(relx=0.1, rely=0.4)
+        cur = Label(self, text='The official currency of the Netherlands is Euro', bg='light grey', width=24, wraplength=200, justify=LEFT)
+        cur.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -245,13 +245,13 @@ class Currency(Frame):
 class Electricity(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey')
-        label = Label(self, text="Holland has this typ of electricity.", bg='light grey')
-        label.place(relx=0.05, rely=0.1)
+        label = Label(self, text="Netherlands electricity:", bg='light grey')
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         elec = Label(self, text="For the Netherlands there are two associated plug types, types C and F. "
                                 "Plug type C is the plug which has two round pins and plug type F is the plug which has "
                                 "two round pins with two earth clips on the side.", bg="light gray", width=24, wraplength=200, justify=LEFT)
-        elec.place(relx=0.1, rely=0.3)
+        elec.place(relx=0.05, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
