@@ -457,7 +457,7 @@ class Guide_info_rot(Frame):
         label = Label(self, text="Guide information about Rotterdam.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
+        back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
 
 

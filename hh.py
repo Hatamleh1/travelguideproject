@@ -747,7 +747,6 @@ class Activities_haag(Frame):
 
 # _____________________________ Coming Soon countries ________________________________
 
-
 class Spain(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
