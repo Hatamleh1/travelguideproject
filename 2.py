@@ -41,7 +41,7 @@ class TravelguideApp(Tk):
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
 
-        self.show_frame(Holland)
+        self.show_frame(LoginPage)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -191,8 +191,8 @@ class About_holland(Frame):
 
         about = Label(self, text="The Netherlands, a country in northwestern Europe, is known for a flat landscape of"
                                  "canals, tulip fields, windmills and cycling routes. Amsterdam, the capital, is home to"
-                                 "the Rijksmuseum, Van Gogh Museum and the house where Jewish diarist Anne Frank hid during WWII.", bg='light grey', anchor='e', width=24, wraplength=200, justify=LEFT)
-        about.place(relx=0.05, rely=0.2)
+                                 "the Rijksmuseum, Van Gogh Museum and the house where Jewish diarist Anne Frank hid during WWII.", bg='light grey', anchor='e', width=24, wraplength=200, justify=LEFT, font=("Ariel", 12))
+        about.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -204,7 +204,7 @@ class Best_visit(Frame):
         label = Label(self, text="Best time to visit Netherlands:", bg='light grey')
         label.place(relx=0.5, rely=0.15, anchor=CENTER)
 
-        visit = Label(self, text="The best time weather wise is from mid April to mid October. July and August are the peak months for visitors.", bg="light gray", anchor='w', width=23, wraplength=200, justify=LEFT )
+        visit = Label(self, text="The best time weather wise is from mid April to mid October. July and August are the peak months for visitors.", bg="light gray", anchor='w', width=25, wraplength=200, justify=LEFT, font=("Ariel", 12))
         visit.place(relx=0.1, rely=0.3)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
@@ -220,7 +220,7 @@ class Transport(Frame):
 
         trans = Label(self, text="The Netherlands have an extensive public transport network, which makes in easy to travel around the country. "
                                  "Staying in Amsterdam, you might use GVB trams, buses, metro and ferries, while when you travel to other cities "
-                                 "and destinations, you will definitely need to take a train.", bg='light grey', width=24, wraplength=200, justify=LEFT)
+                                 "and destinations, you will definitely need to take a train.", bg='light grey', width=24, wraplength=200, justify=LEFT, font=("Ariel", 12))
         trans.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
@@ -234,7 +234,7 @@ class Currency(Frame):
         label = Label(self, text="What currency does Holland have? ", bg='light grey')
         label.place(relx=0.5, rely=0.2, anchor=CENTER)
 
-        cur = Label(self, text='The official currency of the Netherlands is Euro', bg='light grey', width=24, wraplength=200, justify=LEFT)
+        cur = Label(self, text='The official currency of the Netherlands is Euro', bg='light grey', width=24, wraplength=200, justify=LEFT, font=("Ariel", 12))
         cur.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
@@ -250,8 +250,8 @@ class Electricity(Frame):
 
         elec = Label(self, text="For the Netherlands there are two associated plug types, types C and F. "
                                 "Plug type C is the plug which has two round pins and plug type F is the plug which has "
-                                "two round pins with two earth clips on the side.", bg="light gray", width=24, wraplength=200, justify=LEFT)
-        elec.place(relx=0.05, rely=0.2)
+                                "two round pins with two earth clips on the side.", bg="light gray", width=24, wraplength=200, justify=LEFT, font=("Ariel", 12))
+        elec.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
