@@ -317,16 +317,11 @@ class Guide_info_ams(Frame):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Amsterdam:", bg="light grey", font=("Ariel", 13))
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
-<<<<<<< Updated upstream
 
         label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights,"
                                  "it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city "
-                                 "from the perspective of its canals.", bg="light grey", font=("Ariel", 13), anchor='e', width=24, wraplength=200, justify=LEFT)
-        label.place(relx=0.5, rely=0.5, anchor=CENTER)
-=======
-        label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city from the perspective of its canals.", bg="light grey", font=("Ariel", 12), anchor='e', width=24, wraplength=200, justify=LEFT)
+                                 "from the perspective of its canals.", bg="light grey", font=("Ariel", 13), anchor='e', width=25, wraplength=200, justify=LEFT)
         label.place(relx=0.1, rely=0.2)
->>>>>>> Stashed changes
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
