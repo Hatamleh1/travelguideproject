@@ -3,10 +3,9 @@ import pickle
 
 file = open('hotel_dict', 'wb')
 
-d = {"Amsterdam": [Hotel("HOTEL V NESPLEIN"), Hotel("MOTEL ONE WATERLOOPLEIN"), Hotel("HYATT REGENCY"), Hotel("ESTHEREA")],
-     "Haag": [Hotel("Hague1 Hotel"), Hotel("Hague2 Hotel"), Hotel("Hague3 Hotel"), Hotel("Hague4 Hotel")],
-     "Rotterdam": [Hotel("Rotterdam Hotel"), Hotel("Rotterdam2 Hotel"), Hotel("Rotterdam3 Hotel"), Hotel("Rotterdam4 Hotel")],
-     "Best": [Hotel("Best Hotel"), Hotel("Best2 Hotel"), Hotel("Best3 Hotel"), Hotel("Best4 Hotel")]}
+d = {"Amsterdam": [Hotel("Hotel V Nesplein"), Hotel("Motel Waterlooplein"), Hotel("Hyatt Regency"), Hotel("Estherea")],
+     "Haag": [Hotel("Hilton The Hague"), Hotel("Hotel Des Indes"), Hotel("Crown Plaza"), Hotel("Staybridge Suites")],
+     "Rotterdam": [Hotel("Hotel Mainport"), Hotel("Hilton Rotterdam"), Hotel("Rotterdam Marriott"), Hotel("nhow Rotterdam")]}
 
 
 pickle.dump(d, file)
