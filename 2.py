@@ -317,11 +317,16 @@ class Guide_info_ams(Frame):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Amsterdam:", bg="light grey", font=("Ariel", 13))
         label.place(relx=0.5, rely=0.1, anchor=CENTER)
+<<<<<<< Updated upstream
 
         label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights,"
                                  "it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city "
                                  "from the perspective of its canals.", bg="light grey", font=("Ariel", 13), anchor='e', width=24, wraplength=200, justify=LEFT)
         label.place(relx=0.5, rely=0.5, anchor=CENTER)
+=======
+        label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city from the perspective of its canals.", bg="light grey", font=("Ariel", 12), anchor='e', width=24, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
+>>>>>>> Stashed changes
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -433,8 +438,10 @@ class Restaurants_ams(Frame):
 class Sightseeing_ams(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Excited to go on some sightseeing?", bg="light grey",  font=("Ariel", 12))
+        label.place(relx=0.5, rely=0, anchor=CENTER)
+        label = Label(self, text="One of Amsterdam's most popular attractions - and certainly its most important art repository - the Rijksmuseum (National Museum) was founded in 1798 to house the country's huge collection of rare art and antiquities. The museum's impressive collection includes a million cultural artifacts dating from the 13th century to the modern day, among them more than 8,000 important paintings spread across 250 rooms of this sprawling building.", bg="light grey",  font=("Ariel", 12), anchor='e', width=24, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.1)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -443,8 +450,11 @@ class Sightseeing_ams(Frame):
 class Activities_ams(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Find the most interesting activities \n to do in Amsterdam. ", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Activities to do in Amsterdam. ", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+        label = Label(self, text="Often cited as Amsterdam’s most charming neighbourhood, wandering into the Jordaan feels like stepping back in time. Originally a working-class area, the Jordaan’s narrow streets and quaint buildings now make up one of Amsterdam’s most desirable quarters, dotted with independent art galleries, antique shops, courtyard gardens and atmospheric bars and restaurants.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
+
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -479,8 +489,11 @@ class Rotterdam_nav(Frame):
 class Guide_info_rot(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Guide information about Rotterdam.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Guide information Rotterdam.", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="At Rotterdam Tourist Information you will find all the information you need to plan your visit to Rotterdam including brochures about Rotterdam, the Rotterdam Tourist Information app and practical information.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -600,8 +613,11 @@ class Restaurants_rot(Frame):
 class Sightseeing_rot(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Excited to go on some sightseeing. \n Laith Mathilda is rated highly \n so don't miss it.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Excited to go on sightseeing?", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="The second largest city in the Netherlands, Rotterdam lies on both banks of the Nieuwe Maas, the tidal southern arm of the Rhine, where it's joined by the little River Rotte. It's also the world's largest port, home to the massive Europoort facility through which so much freight passes on its way to and from the continent.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -610,8 +626,12 @@ class Sightseeing_rot(Frame):
 class Activities_rot(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Find the most interesting activities \n to do in Rotterdam. ", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+        label = Label(self, text="Activities to do in Rotterdam. ", bg="light grey", font=("Ariel", 12))
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="A short walk from here is Maritime Museum Rotterdam. Established in 1873, the museum provides a fascinating look into the city's connection to the sea and its many waterways. Its large collections cover the history of shipping and seafaring, including ship models, a reconstruction of a 2,000-year-old vessel, and numerous seafaring paintings. ", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Rotterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -649,7 +669,10 @@ class Guide_info_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Guide information about Haag.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="The Hague is the only big city with a beach directly on the North Sea coast. The city boasts many monuments, chic hotels, and a political heart. The government of Holland is run from the historic Binnenhof and the King’s office palace can be found on the Noordeinde. You can visit beautiful art museums and a day of high-end shopping.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -763,8 +786,11 @@ class Restaurants_haag(Frame):
 class Sightseeing_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Excited to go on some sightseeing. \n The Mauritshuis is rated highly \n so don't miss it.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Excited to go on sightseeing?", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="In the center of the oldest section of The Hague is the Binnenhof - the Inner Court - an irregular group of buildings constructed around a large central courtyard. With its origins dating back to 1250 and tied to the building of a castle, it soon became the residence of the ruling aristocracy, and today houses both chambers of Parliament.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -773,8 +799,11 @@ class Sightseeing_haag(Frame):
 class Activities_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Find the most interesting activities \n to do in Haag. ", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Activities to do in Haag. ", bg="light grey")
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+        label = Label(self, text="Housed in a specially made rotunda, Panorama Mesdag is a gigantic painting measuring 120 meters in length and 14 meters in height that was painted by HW Mesdag and his wife, Sientje Mesdag-Van Houten, along with other artists of the Hague School.", bg="light grey", font=("Ariel", 12), anchor='e', width=25, wraplength=200, justify=LEFT)
+        label.place(relx=0.1, rely=0.2)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
