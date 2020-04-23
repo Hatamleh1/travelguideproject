@@ -295,8 +295,10 @@ class Amsterdam_nav(Frame):
 class Guide_info_ams(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Guide information about Amsterdam.", bg="light grey")
-        label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        label = Label(self, text="Guide information about Amsterdam.", bg="light grey", font=("Ariel", 13))
+        label.place(relx=0.5, rely=0.1, anchor=CENTER)
+        label = Label(self, text="Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city from the perspective of its canals.", bg="light grey", font=("Ariel", 13), width=40)
+        label.place(relx=0.5, rely=0.2, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
@@ -315,16 +317,16 @@ class Hotels_ams(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Amsterdam"
-        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate hotels from 1 to 5.\n\n', font=("Ariel", 15), bg='light grey')
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.hotel_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=3)
+            Label(self, text=h.name, bg='light grey', font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=3)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(), font=("Ariel", 12), bg='light grey'))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
@@ -366,16 +368,16 @@ class Restaurants_ams(Frame):
         self.rating_fields = []
         self.rating_labels = []
         self.city = "Amsterdam"
-        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey')
+        headline = Label(self, text='Rate restaurant from 1 to 5.\n\n', bg='light grey', font=("Ariel", 15))
         headline.grid(row=0, column=0, columnspan=3)
         for i, h in enumerate(self.restaurant_dict[self.city]):
             padding = 5
             if i == 0:
                 padding = 50
-            Label(self, text=h.name, bg='light grey').grid(row=i, column=0, pady=(padding, 5), padx=5)
+            Label(self, text=h.name, bg='light grey', font=("Ariel", 12)).grid(row=i, column=0, pady=(padding, 5), padx=5)
             self.rating_fields.append(Entry(self, highlightbackground='light grey', width=8))
             self.rating_fields[-1].grid(row=i, column=1, pady=(padding, 5))
-            self.rating_labels.append(Label(self, text=h.get_average_rating(), bg='light grey'))
+            self.rating_labels.append(Label(self, text=h.get_average_rating(),font=("Ariel", 12), bg='light grey'))
             self.rating_labels[-1].grid(row=i, column=2, pady=(padding, 5))
 
         submit_button = Button(self, text='Submit', command=self.submit, highlightbackground='light grey')
@@ -738,7 +740,7 @@ class Restaurants_haag(Frame):
 class Sightseeing_haag(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
-        label = Label(self, text="Excited to go on some sightseeing. \n Anne franks museum is rated highly \n so don't miss it.", bg="light grey")
+        label = Label(self, text="Excited to go on some sightseeing. \n The Mauritshuis is rated highly \n so don't miss it.", bg="light grey")
         label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Haag_nav), highlightbackground='light grey', width=5)
