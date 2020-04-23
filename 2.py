@@ -434,9 +434,9 @@ class Sightseeing_ams(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent, bg='light grey', width=500, height=500)
         label = Label(self, text="Excited to go on some sightseeing?", bg="light grey",  font=("Ariel", 12))
-        label.place(relx=0.5, rely=0, anchor=CENTER)
+        label.place(relx=0.5, rely=0.08, anchor=CENTER)
         label = Label(self, text="One of Amsterdam's most popular attractions - and certainly its most important art repository - the Rijksmuseum (National Museum) was founded in 1798 to house the country's huge collection of rare art and antiquities. The museum's impressive collection includes a million cultural artifacts dating from the 13th century to the modern day, among them more than 8,000 important paintings spread across 250 rooms of this sprawling building.", bg="light grey",  font=("Ariel", 12), anchor='e', width=24, wraplength=200, justify=LEFT)
-        label.place(relx=0.1, rely=0.1)
+        label.place(relx=0.1, rely=0.13)
 
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Amsterdam_nav), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
