@@ -41,7 +41,7 @@ class TravelguideApp(Tk):
             frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
 
-        self.show_frame(Restaurants_ams)
+        self.show_frame(Holland)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -189,9 +189,14 @@ class About_holland(Frame):
         label = Label(self, text="Here you can get all information \n about Holland needed before \n your trip to Holland.", bg='light grey')
         label.pack(side="top", fill="both", expand=True)
 
+        about = Label(self, text="The Netherlands, a country in northwestern Europe, is known for a flat landscape of \n"
+                                 "canals, tulip fields, windmills and cycling routes. Amsterdam, the capital, is home to \n"
+                                 "the Rijksmuseum, Van Gogh Museum and the house where Jewish diarist Anne Frank hid during WWII.\n"
+                                 "Canalside mansions and a trove of works from artists including Rembrandt and Vermeer remain from the city's 17th-century/n", bg='light grey')
+
+        about.pack(side="top", expand=True)
         back_btn = Button(self, text='Back', command=lambda: controller.show_frame(Holland), highlightbackground='light grey', width=5)
         back_btn.place(relx=0.2, rely=0.9, anchor=CENTER)
-
 
 # Best time to visit.
 class Best_visit(Frame):
